@@ -1,0 +1,15 @@
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\bin\Debug\net8.0\backend.exe
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\bin\Debug\net8.0\backend.deps.json
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\bin\Debug\net8.0\backend.runtimeconfig.json
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\bin\Debug\net8.0\backend.dll
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\bin\Debug\net8.0\backend.pdb
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.AssemblyInfoInputs.cache
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.AssemblyInfo.cs
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.csproj.CoreCompileInputs.cache
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.sourcelink.json
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.dll
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\refint\backend.dll
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.pdb
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\backend.genruntimeconfig.cache
+D:\Github\Tubes3_Last-Day-on-ITB\src\backend\obj\Debug\net8.0\ref\backend.dll
