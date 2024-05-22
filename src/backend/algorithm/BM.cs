@@ -1,5 +1,5 @@
 using System;
-namespace BM
+namespace stringMatching
 {
     public class BM
     {

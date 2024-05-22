@@ -2,7 +2,7 @@ using System;
 using System.Text ;
 
 namespace stringMatching{
-    class StringMatching {
+    class KMP {
         // static void Main(string[] args) {
         //     Console.WriteLine("Hello Worldss!");   
         //     // StringBuilder sb = new StringBuilder("ababababca") ;
@@ -12,7 +12,7 @@ namespace stringMatching{
 
         //     Console.WriteLine(KMP("abacaabaccabacabaabb", "abacab")) ;
         // }
-        static bool KMP(string source, string subset) {
+        static bool KMPSolve(string source, string subset) {
             int count = 0 ;
             StringBuilder src = new(source) ;
             StringBuilder sub = new(subset) ;
@@ -41,7 +41,7 @@ namespace stringMatching{
                             continue ;
                         }
                         else {
-                            int border = borderFunction(sub.ToString(0, p_index)) ;
+                            int border = BorderFunction(sub.ToString(0, p_index)) ;
                             if (p_index == 0) {
                                 t_index += 1 ;
                             }
@@ -59,7 +59,7 @@ namespace stringMatching{
             return false ;
         }
 
-        static int borderFunction(string word) {
+        static int BorderFunction(string word) {
             if (word.Length <= 1) {
                 return 0 ;
             }

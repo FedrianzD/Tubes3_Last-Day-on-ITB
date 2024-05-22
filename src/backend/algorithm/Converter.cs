@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace convert{
+namespace converter{
     class Converter
     {
         // static void Main(string[] args)

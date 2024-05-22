@@ -1,11 +1,11 @@
 ﻿using System;
-using BM;
-namespace Program
+using stringMatching;
+namespace Main
 {
     class Program{
         static void Main(string[] args)
         {
-            int posn = BM.BM.BMmatch("aaaaaaaaa", "aaaa");
+            int posn = BM.BMmatch("aaaaaaaaa", "aaaa");
             Console.WriteLine(posn);
         }
     }
