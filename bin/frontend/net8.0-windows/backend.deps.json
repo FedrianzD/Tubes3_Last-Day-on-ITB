@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "frontend/1.0.0": {
-        "dependencies": {
-          "backend": "1.0.0"
-        },
-        "runtime": {
-          "frontend.dll": {}
-        }
-      },
       "backend/1.0.0": {
         "runtime": {
           "backend.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "frontend/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "backend/1.0.0": {
       "type": "project",
       "serviceable": false,
