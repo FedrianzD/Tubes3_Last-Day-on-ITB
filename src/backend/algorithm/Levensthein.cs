@@ -34,9 +34,9 @@ public class Levenshtein
                 }
                 else
                 {
-                    dp[i, j] = numbers.Min(dp[i - 1, j] + 1,
-                                   dp[i, j - 1] + 1,
-                                   dp[i - 1, j - 1] + CostOfSubstitution(start[i - 1], goal[j - 1]));
+                    dp[i, j] = new[] {dp[i - 1, j] + 1,
+                                      dp[i, j - 1] + 1,
+                                      dp[i - 1, j - 1] + CostOfSubstitution(start[i - 1], goal[j - 1])}.Min();
                 }
             }
         }
