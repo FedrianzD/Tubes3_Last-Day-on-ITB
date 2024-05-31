@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 
 namespace Database_Operation
@@ -8,45 +9,46 @@ namespace Database_Operation
         // Main Method
         static void Main()
         {
-            Connect();
+            // Connect();
+            // List<string> names = [];
+            // reader.Reader.ReadFileName();
+            // names = reader.Reader.ReadTxt();
+            // foreach(string name in names){
+            //     Console.WriteLine(name);
+            // }
+            // foreach(var pair in reader.Reader.Pairing()){
+            //     Console.WriteLine(pair.name + " " + pair.path);
+            // }
+            InsertDatabase();
             // Console.ReadKey();
         }
 
-        static void Connect()
+        static void ReadDatabase()
         {
             string connectionString;
 
-            // for the connection to 
-            // MySQL server database
+            // connect ke database di server
             MySqlConnection connection;
-
-            // Data Source is the name of the 
-            // server on which the database is stored.
-            // The Database is used to specify
-            // the name of the database
-            // The UserID and Password are the credentials
-            // required to connect to the database.
             connectionString = "Server=localhost;Database=stima;User ID=root;Password=12345678;";
-
             connection = new MySqlConnection(connectionString);
 
             try
             {
-                // to open the connection
+                // open connection
                 connection.Open();
 
                 Console.WriteLine("Connection Open!");
 
-                // Define a query
+                // bikin querynya
                 string query = "SELECT * FROM biodata LIMIT 5";
 
-                // Create a command object
+                // bikin commandnya
                 MySqlCommand command = new MySqlCommand(query, connection);
 
-                // Execute the command and obtain a reader
+                // trus execute
                 MySqlDataReader reader = command.ExecuteReader();
 
-                // Check if the reader has any rows
+                
                 if (reader.HasRows)
                 {
                     // Read each row
@@ -72,7 +74,7 @@ namespace Database_Operation
                     Console.WriteLine("No rows found.");
                 }
 
-                // Close the reader
+                
                 reader.Close();
             }
             catch (Exception ex)
@@ -81,9 +83,42 @@ namespace Database_Operation
             }
             finally
             {
-                // to close the connection
+                
                 connection.Close();
                 Console.WriteLine("Connection Closed!");
+            }
+        }
+        public static void InsertDatabase(){
+            string connectionString;
+
+            // connect ke database di server
+            MySqlConnection connection;
+            connectionString = "Server=localhost;Database=stima;User ID=root;Password=12345678;";
+            connection = new MySqlConnection(connectionString);
+            try{
+                connection.Open();
+                Console.WriteLine("open");
+                // bikin querynya
+                string query = "INSERT INTO sidik_jari (nama, berkas_citra) VALUES (@nama, @path)";
+
+                // bikin commandnya
+                MySqlCommand command = new MySqlCommand(query, connection);
+                List<(string name, string path)> values = reader.Reader.Pairing();
+                foreach(var (name, path) in values){
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@nama", name);
+                    command.Parameters.AddWithValue("@path", path);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Output the number of rows affected
+                    Console.WriteLine($"{rowsAffected} row(s) inserted for data {name}");
+                }
+
+
+            }catch(Exception e){
+                Console.WriteLine($"An error occurred: {e.Message}");
+            }finally{
+                connection.Close();
             }
         }
     }

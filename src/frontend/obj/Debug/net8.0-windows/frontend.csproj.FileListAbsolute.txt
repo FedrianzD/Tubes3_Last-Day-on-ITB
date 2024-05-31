@@ -23,3 +23,5 @@ D:\Github\Tubes3_Last-Day-on-ITB\bin\frontend\net8.0-windows\backend.deps.json
 D:\Github\Tubes3_Last-Day-on-ITB\bin\frontend\net8.0-windows\backend.runtimeconfig.json
 D:\Github\Tubes3_Last-Day-on-ITB\bin\frontend\net8.0-windows\backend.exe
 D:\Github\Tubes3_Last-Day-on-ITB\src\frontend\obj\Debug\net8.0-windows\frontend.csproj.Up2Date
+D:\Github\Tubes3_Last-Day-on-ITB\src\frontend\obj\Debug\net8.0-windows\frontend.MainForm.resources
+D:\Github\Tubes3_Last-Day-on-ITB\src\frontend\obj\Debug\net8.0-windows\frontend.csproj.GenerateResource.cache
