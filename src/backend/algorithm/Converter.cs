@@ -1,79 +1,101 @@
 using System;
 using System.IO;
+using System.Drawing;
 using System.Text;
+using Microsoft.VisualBasic;
+using System.Collections;
+using System.Drawing.Drawing2D;
 
-namespace converter{
+namespace converter
+{
     class Converter
     {
-        // static void Main(string[] args)
-        // {
-        //     // Relative path to the BMP file from the code's folder
-        //     string filePath = @"..\..\test\SOCOFing\Real\1__M_Left_index_finger.BMP";
-        //     // string filePath = "1__M_Left_index_finger.BMP";
-
-
-        //     // Alternatively, use an absolute path
-        //     // string filePath = @"C:\path\to\your\image\your_image.bmp";
-            
-        //     if (!File.Exists(filePath))
-        //     {
-        //         Console.WriteLine("File not found: " + filePath);
-        //         return;
-        //     }
-
-        //     try
-        //     {
-        //         string binaryString = ConvertBmpToAscii(filePath);
-        //         // Console.WriteLine(binaryString);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         Console.WriteLine("An error occurred: " + ex.Message);
-        //     }
-        // }
-
-        static string ConvertBmpToAscii(string filePath) {
-            string binary_result = ConvertBmpToBinary(filePath) ;
-            string result = ConvertBinaryToAscii(binary_result) ;
-            return result ;
-        }
-
-        static string ConvertBmpToBinary(string filePath)
+        static void SaveMatrixToFile(int[,] matrix)
         {
-            // Read the BMP file as bytes
-            byte[] bmpBytes = File.ReadAllBytes(filePath);
             
-            // Convert bytes to binary string
-            StringBuilder binaryStringBuilder = new StringBuilder();
-            foreach (byte b in bmpBytes)
-            {
-                binaryStringBuilder.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
-            }
-            
-            return binaryStringBuilder.ToString() ;
-            // return ConvertBinaryToAscii(binaryStringBuilder.ToString());
-        }
+            int width = matrix.GetLength(1);
+            int height = matrix.GetLength(0);
 
-        static string ConvertBinaryToAscii(string binaryString)
+            
+            Bitmap bitmap = new Bitmap(width, height);
+
+            
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (matrix[y, x] == 1)
+                    {
+                        bitmap.SetPixel(x, y, Color.Black); // 1 black pixel
+                    }
+                    else
+                    {
+                        bitmap.SetPixel(x, y, Color.White); // 0 white pixel
+                    }
+                }
+            }
+
+            bitmap.Save("output.png", System.Drawing.Imaging.ImageFormat.Png);
+        }
+        static int[,] ConvertToBnW(Bitmap bitmap)
         {
-            Console.WriteLine(binaryString.Length) ;
-            StringBuilder asciiStringBuilder = new StringBuilder();
-
-            for (int i = 0; i < binaryString.Length; i += 8)
+            int[,] matrix = new int[bitmap.Height, bitmap.Width];
+            for (int y = 0; y < bitmap.Height; y++)
             {
-                // Take 8 bits at a time
-                string byteString = binaryString.Substring(i, 8);
-                
-                // Convert binary string to byte
-                byte b = Convert.ToByte(byteString, 2);
-                
-                // Convert byte to ASCII character and append to the string builder
-                asciiStringBuilder.Append((char)b);
+                for (int x = 0; x < bitmap.Width; x++)
+                {
+                    Color originalColor = bitmap.GetPixel(x, y);
+                    int grayScale = (int)(originalColor.R * 0.21 + originalColor.G * 0.72 + originalColor.B * 0.07);
+                    int newColor = (grayScale >= 128) ? 0 : 1;
+                    matrix[y, x] = newColor;
+                }
             }
-            Console.WriteLine(asciiStringBuilder.ToString().Length) ; 
-            return asciiStringBuilder.ToString();
+
+            SaveMatrixToFile(matrix);
+
+            return matrix;
         }
 
+        static List<string> ConvertToAscii(int[,] matrix)
+        {
+            List<string> arrStr = [];
+            StringBuilder sb = new StringBuilder();
+            int val = 0;
+            for (int row = 0; row < matrix.GetLength(0) - 7; row++)
+            {
+                sb.Clear();
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    val = 0;
+                    for (int itr = 0; itr < 8; itr++)
+                    {
+                        val = val << 1 | matrix[row + itr, col];
+                    }
+                    sb.Append((char)val);
+                }
+                arrStr.Add(sb.ToString());
+            }
+            return arrStr;
+        }
+
+        public static string getPattern(List<string> arr)
+        {
+
+            int midpoint = arr.Count / 2;
+            string Original = arr.ElementAt(midpoint);
+            StringBuilder sb = new StringBuilder();
+            int midpoint2 = (Original.Length - 30) / 2;
+
+            return Original.Substring(midpoint2, 30);
+
+        }
+
+        public static List<string> readFile(string path)
+        {
+            Bitmap bitmap = new Bitmap(path);
+            List<string> arr = ConvertToAscii(ConvertToBnW(bitmap));
+            return arr;
+        }
     }
 
 }
