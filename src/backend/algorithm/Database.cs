@@ -8,41 +8,41 @@ namespace Database_Operation
     class DB
     {
         // Main Method
-        static void Main()
-        {
-            // Connect();
-            // List<string> names = [];
-            // reader.Reader.ReadFileName();
-            // names = reader.Reader.ReadTxt();
-            // foreach(string name in names){
-            //     Console.WriteLine(name);
-            // }
-            // foreach(var pair in reader.Reader.Pairing()){
-            //     Console.WriteLine(pair.name + " " + pair.path);
-            // }
-            // InsertDatabase();
-            ReadDatabase();
-            // Console.ReadKey();
-            // string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
-            // List<string> arr = converter.Converter.readFile(path);
-            // // foreach(string a in arr){
-            // //     Console.WriteLine(a);
-            // //     File.WriteAllText("a.txt", a);
-            // //     Console.WriteLine("batas cok");
-            // // }
-            // string pattern = converter.Converter.getPattern(arr);
-            // foreach(string a in arr){
-            //     if(stringMatching.BM.BMmatch(a, pattern) != -1){
-            //         Console.WriteLine("aaaaa");
-            //     }
+        // static void Main()
+        // {
+        //     // Connect();
+        //     // List<string> names = [];
+        //     // reader.Reader.ReadFileName();
+        //     // names = reader.Reader.ReadTxt();
+        //     // foreach(string name in names){
+        //     //     Console.WriteLine(name);
+        //     // }
+        //     // foreach(var pair in reader.Reader.Pairing()){
+        //     //     Console.WriteLine(pair.name + " " + pair.path);
+        //     // }
+        //     // InsertDatabase();
+        //     ReadDatabaseSidikJari();
+        //     // Console.ReadKey();
+        //     // string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
+        //     // List<string> arr = converter.Converter.readFile(path);
+        //     // // foreach(string a in arr){
+        //     // //     Console.WriteLine(a);
+        //     // //     File.WriteAllText("a.txt", a);
+        //     // //     Console.WriteLine("batas cok");
+        //     // // }
+        //     // string pattern = converter.Converter.getPattern(arr);
+        //     // foreach(string a in arr){
+        //     //     if(stringMatching.BM.BMmatch(a, pattern) != -1){
+        //     //         Console.WriteLine("aaaaa");
+        //     //     }
 
-            // }
-            // File.WriteAllLines("a.txt", arr);
+        //     // }
+        //     // File.WriteAllLines("a.txt", arr);
             
 
-        }
+        // }
 
-        public static void ReadDatabase()
+        public static void ReadDatabaseCheck()
         {
             string connectionString;
 
@@ -113,7 +113,7 @@ namespace Database_Operation
 
             // connect ke database di server
             MySqlConnection connection;
-            connectionString = "Server=localhost;Database=stima;User ID=root;Password=12345678;";
+            connectionString = "Server=localhost;Port=3306;Database=stima;UID=root;Password=1234;";
             connection = new MySqlConnection(connectionString);
             try{
                 connection.Open();
@@ -140,6 +140,63 @@ namespace Database_Operation
             }finally{
                 connection.Close();
             }
+        }
+
+        public static List<KeyValuePair<string,string>> ReadDatabaseSidikJari()
+        {
+            string connectionString;
+            MySqlConnection connection;
+
+            // connect ke database di server
+            connectionString = "Server=localhost;Port=3306;Database=stima;UID=root;Password=1234;";
+            connection = new MySqlConnection(connectionString);
+            List<KeyValuePair<string,string>> pairs = [];
+            try
+            {
+                // open connection
+                connection.Open();
+
+                Console.WriteLine("Connection Open!");
+
+                // bikin querynya
+                string query = "SELECT * FROM sidik_jari";
+
+                // bikin commandnya
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                // trus execute
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // Read each row
+                    while (reader.Read())
+                    {
+                        string path = reader.GetString("berkas_citra");
+                        string nama = reader.GetString("nama");
+                        pairs.Add(new KeyValuePair<string, string>(path, nama));
+                        // Console.WriteLine($"Path: {path}, Nama: {nama}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+
+                
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                
+                connection.Close();
+                Console.WriteLine("Connection Closed!");
+            }
+            return pairs;
         }
     }
 }

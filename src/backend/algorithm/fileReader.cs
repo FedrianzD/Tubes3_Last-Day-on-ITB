@@ -1,7 +1,7 @@
 namespace reader{
     class Reader{
         public static List<string> ReadFileName(){
-            string directoryPath = "SOCOFing/Real/";
+            string directoryPath = "test/SOCOFing/Real/";
 
             // Get all file names in the directory
             List<string> filepath = [];
@@ -16,12 +16,12 @@ namespace reader{
                     string substring = fileName.Split(new string[] { delimiter }, StringSplitOptions.None)[0];
                     return int.Parse(substring);
                 }).ToList();
-                // Console.WriteLine(Path.GetFileName(filepath.ElementAt(0)));
-                // foreach (string file in filepath)
-                // {
-                //     Console.WriteLine(file);
+                Console.WriteLine(Path.GetFileName(filepath.ElementAt(0)));
+                foreach (string file in filepath)
+                {
+                    Console.WriteLine(file);
 
-                // }
+                }
             }
             catch (Exception ex)
             {
@@ -34,7 +34,7 @@ namespace reader{
         {
             
             
-            string filePath = "SOCOFing/name.txt";
+            string filePath = "test/SOCOFing/name.txt";
 
             List<string> names = [];
             try

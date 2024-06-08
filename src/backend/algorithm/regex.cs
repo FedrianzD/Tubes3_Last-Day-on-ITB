@@ -33,12 +33,12 @@ class RegularExpressions {
         {'z', "[zZ2]"}
     } ;
     
-    static void Main(string[] args) {
-        string tes = RegularExpressions.createPattern("Vanson Kurnialim") ;
-        Console.WriteLine(tes) ;
+    // static void Main(string[] args) {
+    //     string tes = RegularExpressions.createPattern("Vanson Kurnialim") ;
+    //     Console.WriteLine(tes) ;
 
-        Console.WriteLine(regexMatching("vNS0n kRNlM", tes)) ;
-    }
+    //     Console.WriteLine(regexMatching("vNS0n kRNlM", tes)) ;
+    // }
 
     static bool regexMatching(string word, string pattern) {
         return Regex.IsMatch(word, pattern) ;
