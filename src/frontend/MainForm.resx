@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="userPictureBox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="MatchPictureBox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABLAAAAMgCAMAAAAEPmswAAAABGdBTUEAALGPC/xhBQAAADZQTFRF8fP1
         wsvSxc7V7vDz7O/y6e3v1tzhy9LZ2d/jzdTa0tne4ubq5+ru3+ToyNDX3OHmz9bc5OnsXJ6EWQAAGWxJ
@@ -233,7 +233,7 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAYIm+ffs/nTNeiN0Il7QAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="MatchPictureBox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="userPictureBox.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABLAAAAMgCAMAAAAEPmswAAAABGdBTUEAALGPC/xhBQAAADZQTFRF8fP1
         wsvSxc7V7vDz7O/y6e3v1tzhy9LZ2d/jzdTa0tne4ubq5+ru3+ToyNDX3OHmz9bc5OnsXJ6EWQAAGWxJ
