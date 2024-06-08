@@ -5,7 +5,7 @@ using stringMatching;
 
 namespace Database_Operation
 {
-    class DB
+    public class DB
     {
         // Main Method
         // static void Main()

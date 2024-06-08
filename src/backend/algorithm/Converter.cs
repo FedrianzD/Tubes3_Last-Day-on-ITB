@@ -8,7 +8,7 @@ using System.Drawing.Drawing2D;
 
 namespace converter
 {
-    class Converter
+    public class Converter
     {
         static void SaveMatrixToFile(int[,] matrix)
         {

@@ -1,8 +1,9 @@
 using System;
 using System.Text ;
 
-namespace stringMatching{
-    class KMP {
+namespace stringMatching
+{
+    public class KMP {
         // static void Main(string[] args) {
         //     Console.WriteLine("Hello Worldss!");   
         //     // StringBuilder sb = new StringBuilder("ababababca") ;
