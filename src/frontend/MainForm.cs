@@ -10,10 +10,9 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
-        InitializeUI();
     }
 
-    private void TableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+    private void TLP_Paint(object sender, PaintEventArgs e)
     {
 
     }

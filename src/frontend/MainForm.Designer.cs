@@ -30,68 +30,103 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+        TLP = new TableLayoutPanel();
+        title = new Label();
+        userPictureBox = new PictureBox();
+        MatchPictureBox = new PictureBox();
+        selectImageButton = new Button();
+        TLP.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
+        SuspendLayout();
+        // 
+        // TLP
+        // 
+        TLP.AutoSize = true;
+        TLP.ColumnCount = 3;
+        TLP.ColumnStyles.Add(new ColumnStyle());
+        TLP.ColumnStyles.Add(new ColumnStyle());
+        TLP.ColumnStyles.Add(new ColumnStyle());
+        TLP.ColumnStyles.Add(new ColumnStyle());
+        TLP.Controls.Add(title, 1, 0);
+        TLP.Controls.Add(userPictureBox, 0, 1);
+        TLP.Controls.Add(MatchPictureBox, 1, 1);
+        TLP.Controls.Add(selectImageButton, 0, 2);
+        TLP.Location = new Point(0, 0);
+        TLP.Name = "TLP";
+        TLP.RowCount = 3;
+        TLP.RowStyles.Add(new RowStyle());
+        TLP.RowStyles.Add(new RowStyle());
+        TLP.RowStyles.Add(new RowStyle());
+        TLP.RowStyles.Add(new RowStyle());
+        TLP.Size = new Size(836, 417);
+        TLP.TabIndex = 0;
+        TLP.Paint += TLP_Paint;
+        // 
+        // title
+        // 
+        title.AutoSize = true;
+        title.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        title.Location = new Point(309, 0);
+        title.Name = "title";
+        title.Size = new Size(524, 30);
+        title.TabIndex = 0;
+        title.Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
+        // 
+        // userPictureBox
+        // 
+        userPictureBox.BackColor = Color.Transparent;
+        userPictureBox.BorderStyle = BorderStyle.FixedSingle;
+        userPictureBox.InitialImage = (Image)resources.GetObject("userPictureBox.InitialImage");
+        userPictureBox.Location = new Point(3, 33);
+        userPictureBox.Name = "userPictureBox";
+        userPictureBox.Size = new Size(300, 350);
+        userPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+        userPictureBox.TabIndex = 1;
+        userPictureBox.TabStop = false;
+        // 
+        // MatchPictureBox
+        // 
+        MatchPictureBox.BackColor = Color.Transparent;
+        MatchPictureBox.BorderStyle = BorderStyle.FixedSingle;
+        MatchPictureBox.InitialImage = (Image)resources.GetObject("MatchPictureBox.InitialImage");
+        MatchPictureBox.Location = new Point(309, 33);
+        MatchPictureBox.Name = "MatchPictureBox";
+        MatchPictureBox.Size = new Size(300, 350);
+        MatchPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+        MatchPictureBox.TabIndex = 2;
+        MatchPictureBox.TabStop = false;
+        // 
+        // selectImageButton
+        // 
+        selectImageButton.AutoSize = true;
+        selectImageButton.Location = new Point(3, 389);
+        selectImageButton.Name = "selectImageButton";
+        selectImageButton.Size = new Size(84, 25);
+        selectImageButton.TabIndex = 2;
+        selectImageButton.Text = "Select Image";
+        selectImageButton.Click += SelectImageButton_Click;
         // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
-        Controls.Add(this.TLP);
+        ClientSize = new Size(950, 450);
+        Controls.Add(TLP);
         Name = "MainForm";
         Text = "MainForm";
+        TLP.ResumeLayout(false);
+        TLP.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
+        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
     #region Andhika's Code
-    private void InitializeUI()
-    {
-        // Create TLP to make Responsive UI
-        this.TLP = new TableLayoutPanel();
-        SuspendLayout();
-        // 
-        // TLP = TableLayoutPanel
-        // 
-        this.TLP.Name = "TLP";
-        this.TLP.Dock = DockStyle.Fill;
-        this.TLP.ColumnCount = 2;
-        this.TLP.RowCount = 1;
-        this.TLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.TLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.TLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-        // Input PictureBox
-        this.userPictureBox = new PictureBox();
-        this.userPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-        this.userPictureBox.BorderStyle = BorderStyle.FixedSingle;
-        this.userPictureBox.BackColor = Color.LightGray;
-        this.userPictureBox.Dock = DockStyle.Fill;
-
-        // Default PictureBox
-        this.MatchPictureBox = new PictureBox();
-        this.MatchPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-        this.MatchPictureBox.BorderStyle = BorderStyle.FixedSingle;
-        this.MatchPictureBox.BackColor = Color.LightGray;
-        this.MatchPictureBox.Dock = DockStyle.Fill;
-
-        // Add PictureBoxes to TableLayoutPanel
-        this.TLP.Controls.Add(this.userPictureBox, 0, 0);
-        this.TLP.Controls.Add(this.MatchPictureBox, 1, 0);
-
-        // Add TableLayoutPanel to the form
-        Controls.Add(this.TLP);
-
-        // Load default image
-        LoadImage("");
-
-        // Add button to select user image
-        this.selectImageButton = new Button();
-        this.selectImageButton.Text = "Select Image";
-        this.selectImageButton.Click += SelectImageButton_Click;
-        this.TLP.Controls.Add(this.selectImageButton, 0, 1);
-    }
-
     // Load image
     private void LoadImage(string imagePath)
     {
@@ -112,7 +147,7 @@ partial class MainForm
             {
                 this.userPictureBox.Image = Image.FromFile("C:\\Users\\Acer\\tmp\\Tubes3_Last-Day-on-ITB\\src\\frontend\\assets\\placeholder.png");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error loading default image");
             }
@@ -136,6 +171,7 @@ partial class MainForm
     #endregion
 
     private TableLayoutPanel TLP;
+    private Label title;
     private PictureBox userPictureBox;
     private PictureBox MatchPictureBox;
     private Button selectImageButton;
