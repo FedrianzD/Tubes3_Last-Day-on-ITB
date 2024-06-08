@@ -12,7 +12,7 @@ namespace stringMatching{
 
         //     Console.WriteLine(KMP("abacaabaccabacabaabb", "abacab")) ;
         // }
-        static bool KMPSolve(string source, string subset) {
+        public static bool KMPSolve(string source, string subset) {
             int count = 0 ;
             StringBuilder src = new(source) ;
             StringBuilder sub = new(subset) ;
@@ -31,8 +31,8 @@ namespace stringMatching{
                 for (p_index = size ; p_index < len_sub ; p_index++) {
                     if (p_index == len_sub - 1 && sub[p_index] == src[t_index+p_index]) {
                         count += 1 ;
-                        Console.WriteLine("BENER") ;
-                        Console.WriteLine(count) ;
+                        // Console.WriteLine("BENER") ;
+                        // Console.WriteLine(count) ;
                         return true ;
                     }
                     else {
@@ -49,8 +49,8 @@ namespace stringMatching{
                                 t_index += p_index - border ;
                                 size = border ;
                             }
-                            Console.WriteLine("Update t_index") ;
-                            Console.WriteLine(t_index) ;
+                            // Console.WriteLine("Update t_index") ;
+                            // Console.WriteLine(t_index) ;
                             break ;
                         }
                     }

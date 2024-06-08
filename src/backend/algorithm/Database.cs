@@ -1,10 +1,13 @@
 ﻿using System;
-using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
+using System.Data.SQLite;
+using converter;
+using Org.BouncyCastle.Utilities;
+using stringMatching;
 
 namespace Database_Operation
 {
-    class DBConn
+    class DB
     {
         // Main Method
         static void Main()
@@ -19,11 +22,28 @@ namespace Database_Operation
             // foreach(var pair in reader.Reader.Pairing()){
             //     Console.WriteLine(pair.name + " " + pair.path);
             // }
-            InsertDatabase();
+            // InsertDatabase();
             // Console.ReadKey();
+            string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
+            List<string> arr = converter.Converter.readFile(path);
+            // foreach(string a in arr){
+            //     Console.WriteLine(a);
+            //     File.WriteAllText("a.txt", a);
+            //     Console.WriteLine("batas cok");
+            // }
+            string pattern = converter.Converter.getPattern(arr);
+            foreach(string a in arr){
+                if(stringMatching.BM.BMmatch(a, pattern) != -1){
+                    Console.WriteLine("aaaaa");
+                }
+
+            }
+            File.WriteAllLines("a.txt", arr);
+            
+
         }
 
-        static void ReadDatabase()
+        public static void ReadDatabase()
         {
             string connectionString;
 
