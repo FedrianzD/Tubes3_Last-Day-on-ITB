@@ -18,8 +18,9 @@ namespace stringMatching
         **/
 
         // Levenshtein's distance, too overkill and slower compared to Hamming distance
-        public static int LevenshteinDistance(string start, string goal)
+        public static float LevenshteinDistance(string start, string goal)
         {
+            int length = goal.Length ;
             int[,] dp = new int[start.Length + 1, goal.Length + 1];
 
             for (int i = 0; i <= start.Length; i++)
@@ -42,7 +43,8 @@ namespace stringMatching
                     }
                 }
             }
-            return dp[start.Length, goal.Length];
+            float persentase = 100 - ((dp[start.Length, goal.Length]-(length-start.Length)) * 100 / 30) ;
+            return persentase;
         }
     }
 }

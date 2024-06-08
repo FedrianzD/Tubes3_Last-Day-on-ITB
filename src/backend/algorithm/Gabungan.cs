@@ -23,9 +23,12 @@ namespace Gabungan
             // Database_Operation.DB.InsertDatabase();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            KeyValuePair<string,string> pairs = Fungsi("test/SOCOFing/Real/1__M_Left_index_finger.BMP", 1);
-            Console.WriteLine(pairs.Key);
-            Console.WriteLine(pairs.Value);
+            (string path, string Name, string CorruptName, float percent) res = getPathAndName("test/SOCOFing/Real/592__M_Left_index_finger.BMP", 0);
+            Console.WriteLine(res.path);
+            Console.WriteLine(res.Name);
+            Console.WriteLine(res.CorruptName);
+            Console.WriteLine(res.percent);
+            Database_Operation.DB.ReadDatabaseCheck(res.Name);
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
@@ -53,8 +56,9 @@ namespace Gabungan
             
 
         }
-        static KeyValuePair<string,string> Fungsi(string pathPattern, int algo)
+        static (string path, string NameAsli, string NamaCorrupt, float percent) getPathAndName(string pathPattern, int algo)
         {
+            List<string> names = Database_Operation.DB.ReadDatabaseName();
             List<string> patternAll = converter.Converter.readFile(pathPattern);
             string pattern = converter.Converter.getPattern(patternAll);
             List<KeyValuePair<string,string>> SidikJariNamaTmp = Database_Operation.DB.ReadDatabaseSidikJari();
@@ -62,9 +66,9 @@ namespace Gabungan
             string pathFound = "";
             string name = "";
             bool found = false;
-            int diffMin = int.MaxValue; // diffMin untuk menghitung nilai minimum di gambar
-            int diff; // diff untuk menghitung perbedaan di tiap row
-            List<KeyValuePair<int, string>> diffMins = []; // minimum dan pathnya
+            float diffMax = 0; // diffMin untuk menghitung kemiripan di gambar
+            float diff; // diff untuk menghitung perbedaan di tiap row
+            List<KeyValuePair<float, string>> diffMaxs = []; // minimum dan pathnya
             
             foreach(var pair in SidikJariNama)
             {
@@ -75,14 +79,14 @@ namespace Gabungan
                     if(Solve(pattern, Original, algo))
                     {   
                         found = true;
-                        pathFound = Original;
+                        pathFound = pathOri;
                         name = pair.Value;
                         break; // kalo ketemu yang sama persis break aja
                     }
                     diff = stringMatching.Levenshtein.LevenshteinDistance(pattern, Original);
-                    if(diff < diffMin)
+                    if(diff > diffMax)
                     {
-                        diffMin = diff; // nyari diff paling kecil di satu gambar
+                        diffMax = diff; // nyari diff paling kecil di satu gambar
                     }
 
                 }
@@ -90,21 +94,38 @@ namespace Gabungan
                 {
                     break; // kalo ketemu break lagi juga
                 }
-                diffMins.Add(new KeyValuePair<int, string>(diffMin,pathOri)); // masukkin nilai terkecil pada suatu gambar ke dalam list
-                diffMin = int.MaxValue;
+                diffMaxs.Add(new KeyValuePair<float, string>(diffMax,pathOri)); // masukkin nilai terkecil pada suatu gambar ke dalam list
+                diffMax = 0;
             }
             if(found)
-            {
-                return new KeyValuePair<string, string>(pathFound, name);
+            {   
+                
+                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(name);
+                string corruptName = "";
+                foreach(string nama in names)
+                {
+                    if(stringMatching.RegularExpressions.regexMatching(nama, patternNamaAsli)){
+                        corruptName = nama;
+                        break;
+                    }
+                }
+                return (pathFound, name, corruptName, 100);
             }
             else
             {
-                KeyValuePair<int, string> minPair = diffMins.OrderBy(pair => pair.Key).First(); // ambil yang paling kecil
-                foreach(var pair in diffMins){
-                    Console.Write(pair.Value + " ");
-                    Console.WriteLine(pair.Key);
+                KeyValuePair<float, string> maxPair = diffMaxs.OrderBy(pair => pair.Key).Last(); // ambil yang paling besar
+                // percent, path
+                name = SidikJariNama.GetValueOrDefault(maxPair.Value);
+                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(name);
+                string corruptName = "";
+                foreach(string nama in names)
+                {
+                    if(stringMatching.RegularExpressions.regexMatching(nama, patternNamaAsli)){
+                        corruptName = nama;
+                        break;
+                    }
                 }
-                return new KeyValuePair<string, string>(minPair.Value, SidikJariNama.GetValueOrDefault(minPair.Value)); // return path dan nama 
+                return (maxPair.Value, name, corruptName, maxPair.Key); // return path dan nama 
 
             }
         }
@@ -116,5 +137,6 @@ namespace Gabungan
                 return stringMatching.BM.BMmatch(Text, pattern) != -1;
             }
         }
+            
     }
 }

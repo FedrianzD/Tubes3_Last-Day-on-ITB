@@ -51,7 +51,7 @@ namespace converter
                 }
             }
 
-            SaveMatrixToFile(matrix);
+            // SaveMatrixToFile(matrix);
 
             return matrix;
         }

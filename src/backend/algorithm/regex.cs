@@ -2,7 +2,8 @@ using System ;
 using System.Text ;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-
+namespace stringMatching
+{
 class RegularExpressions {
     private static Dictionary<char, string> formula = new Dictionary<char, string>() {
         {'a', "[aA4]?"},
@@ -40,11 +41,11 @@ class RegularExpressions {
     //     Console.WriteLine(regexMatching("vNS0n kRNlM", tes)) ;
     // }
 
-    static bool regexMatching(string word, string pattern) {
+    public static bool regexMatching(string word, string pattern) {
         return Regex.IsMatch(word, pattern) ;
     }
 
-    static string createPattern(string word) {
+    public static string createPattern(string word) {
         StringBuilder src = new StringBuilder(word.ToLower()) ;
         StringBuilder pattern = new StringBuilder() ;
         for (int i = 0 ; i < src.Length ; i++) {
@@ -57,4 +58,5 @@ class RegularExpressions {
         }
         return pattern.ToString() ;
     }
+}
 }

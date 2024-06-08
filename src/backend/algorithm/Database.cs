@@ -42,7 +42,7 @@ namespace Database_Operation
 
         // }
 
-        public static void ReadDatabaseCheck()
+        public static (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) ReadDatabaseCheck(string name)
         {
             string connectionString;
 
@@ -52,6 +52,17 @@ namespace Database_Operation
 
             connection = new MySqlConnection(connectionString);
 
+            string NIK = "";
+            string nama = "";
+            string tempat_lahir = "";
+            string tanggal_lahir = "";
+            string jenis_kelamin = "";
+            string golongan_darah = "";
+            string alamat = "";
+            string agama = "";
+            string status_perkawinan = "";
+            string pekerjaan = "";
+            string kewarganegaraan = "";
             try
             {
                 // open connection
@@ -60,31 +71,30 @@ namespace Database_Operation
                 Console.WriteLine("Connection Open!");
 
                 // bikin querynya
-                string query = "SELECT * FROM biodata LIMIT 5";
+                string query = $"SELECT * FROM biodata WHERE nama='{name}'";
 
                 // bikin commandnya
                 MySqlCommand command = new MySqlCommand(query, connection);
 
                 // trus execute
                 MySqlDataReader reader = command.ExecuteReader();
-
                 
                 if (reader.HasRows)
                 {
                     // Read each row
                     while (reader.Read())
                     {
-                        string NIK = reader.GetString("NIK");
-                        string nama = reader.GetString("nama");
-                        string tempat_lahir = reader.GetString("tempat_lahir");
-                        DateTime tanggal_lahir = reader.GetDateTime("tanggal_lahir");
-                        string jenis_kelamin = reader.GetString("jenis_kelamin");
-                        string golongan_darah = reader.GetString("golongan_darah");
-                        string alamat = reader.GetString("alamat");
-                        string agama = reader.GetString("agama");
-                        string status_perkawinan = reader.GetString("status_perkawinan");
-                        string pekerjaan = reader.GetString("pekerjaan");
-                        string kewarganegaraan = reader.GetString("kewarganegaraan");
+                        NIK = reader.GetString("NIK");
+                        nama = reader.GetString("nama");
+                        tempat_lahir = reader.GetString("tempat_lahir");
+                        tanggal_lahir = reader.GetDateTime("tanggal_lahir").ToString();
+                        jenis_kelamin = reader.GetString("jenis_kelamin");
+                        golongan_darah = reader.GetString("golongan_darah");
+                        alamat = reader.GetString("alamat");
+                        agama = reader.GetString("agama");
+                        status_perkawinan = reader.GetString("status_perkawinan");
+                        pekerjaan = reader.GetString("pekerjaan");
+                        kewarganegaraan = reader.GetString("kewarganegaraan");
 
                         Console.WriteLine($"NIK: {NIK}, Nama: {nama}, Tempat Lahir: {tempat_lahir}, Tanggal Lahir: {tanggal_lahir}, Jenis Kelamin: {jenis_kelamin}, Golongan Darah: {golongan_darah}, Alamat: {alamat}, Agama: {agama}, Status Perkawinan: {status_perkawinan}, Pekerjaan: {pekerjaan}, Kewarganegaraan: {kewarganegaraan}");
                     }
@@ -107,6 +117,7 @@ namespace Database_Operation
                 connection.Close();
                 Console.WriteLine("Connection Closed!");
             }
+            return (NIK,nama,tempat_lahir,tanggal_lahir,jenis_kelamin,golongan_darah,alamat,agama,status_perkawinan,  pekerjaan,kewarganegaraan);
         }
         public static void InsertDatabase(){
             string connectionString;
@@ -197,6 +208,61 @@ namespace Database_Operation
                 Console.WriteLine("Connection Closed!");
             }
             return pairs;
+        }
+        public static List<string> ReadDatabaseName()
+        {
+            string connectionString;
+            MySqlConnection connection;
+
+            // connect ke database di server
+            connectionString = "Server=localhost;Port=3306;Database=stima;UID=root;Password=1234;";
+            connection = new MySqlConnection(connectionString);
+            List<string> names = [];
+            try
+            {
+                // open connection
+                connection.Open();
+
+                Console.WriteLine("Connection Open!");
+
+                // bikin querynya
+                string query = "SELECT nama FROM biodata";
+
+                // bikin commandnya
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                // trus execute
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // Read each row
+                    while (reader.Read())
+                    {
+                        string nama = reader.GetString("nama");
+                        names.Add(nama);
+                        // Console.WriteLine($"Path: {path}, Nama: {nama}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+
+                
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                
+                connection.Close();
+                Console.WriteLine("Connection Closed!");
+            }
+            return names;
         }
     }
 }
