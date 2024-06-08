@@ -18,11 +18,19 @@ public class Encryption
 
                 if (char.IsLower(c))
                 {
-                    ciphertext += (char)(((c - 'a' + keyValue) % 26) + 'a');
+                    int temp = c - 'a' + keyValue ;
+                    while (temp < 0) {
+                        temp += 26 ;
+                    }
+                    ciphertext += (char)((temp % 26) + 'a');
                 }
                 else
                 {
-                    ciphertext += (char)(((c - 'A' + keyValue) % 26) + 'A');
+                    int temp = c - 'A' + keyValue ;
+                    while (temp < 0) {
+                        temp += 26 ;
+                    }
+                    ciphertext += (char)((temp % 26) + 'A');
                 }
 
                 keyIndex++;
@@ -50,11 +58,19 @@ public class Encryption
 
                 if (char.IsLower(c))
                 {
-                    plaintext += (char)(((c - 'a' - keyValue + 26) % 26) + 'a');
+                    int temp = c - 'a' - keyValue ;
+                    while (temp < 0) {
+                        temp += 26 ;
+                    }
+                    plaintext += (char)((temp % 26) + 'a');
                 }
                 else
                 {
-                    plaintext += (char)(((c - 'A' - keyValue + 26) % 26) + 'A');
+                    int temp = c - 'A' - keyValue ;
+                    while (temp < 0) {
+                        temp += 26 ;
+                    }
+                    plaintext += (char)((temp % 26) + 'A');
                 }
 
                 keyIndex++;
@@ -72,7 +88,11 @@ public class Encryption
         string result = "" ;
         foreach (char c in plaintext) {
             if (c >= 32 && c <= 126) {
-                char new_index = (char)(((c - 32 + key) % 95) + 32) ;
+                int ascii = c - 32 + key ;
+                while (ascii < 0) {
+                    ascii += 95 ;
+                }
+                char new_index = (char)((ascii % 95) + 32) ;
                 result += new_index ;
             }
             else {
@@ -94,23 +114,28 @@ public class Encryption
     }
     static void Main()
     {
-        string key1 = "LastDayonITB" ;
-        int key2 = 5 ;
-        string tes = "Andhika Tantyo Anugrah" ;
+        string key1 = "Last Day on ITB" ;
+        int key2 = 1 ;
+        string tes = "Dale Daldan" ;
         string encrypted = Encrypt(tes, key1, key2) ;
         string decrypted = Decrypt(encrypted, key1, key2) ;
         Console.WriteLine(encrypted) ;
         Console.WriteLine(decrypted) ;
 
-        string encryptedV = EncryptV(tes, key1) ;
-        Console.WriteLine(encryptedV) ;
-        string encryptedC = EncryptC(encryptedV, key2) ;
-        Console.WriteLine(encryptedC) ;
+        // string encryptedV = EncryptV(tes, key1) ;
+        // Console.WriteLine(encryptedV) ;
+        // string encryptedC = EncryptC(encryptedV, key2) ;
+        // Console.WriteLine(encryptedC) ;
 
-        string decryptedC = EncryptC(encryptedC, -key2) ;
-        Console.WriteLine(decryptedC) ;
-        string decryptedV = DecryptV(decryptedC, key1) ;
-        Console.WriteLine(decryptedV) ;
+        // string decryptedC = EncryptC(encryptedC, -key2) ;
+        // Console.WriteLine(decryptedC) ;
+        // string decryptedV = DecryptV(decryptedC, key1) ;
+        // Console.WriteLine(decryptedV) ;
+
+        // string enc = EncryptC(tes, key2) ;
+        // Console.WriteLine(enc) ;
+        // string dec = EncryptC(enc, -key2) ;
+        // Console.WriteLine(dec) ;
     }
 }
 }
