@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
-using stringMatching;
+using System.Diagnostics;
+using Gabungan;
 
 namespace frontend;
 
@@ -34,16 +35,16 @@ partial class MainForm
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         TLP = new TableLayoutPanel();
         title = new Label();
-        userPictureBox = new PictureBox();
         MatchPictureBox = new PictureBox();
         selectImageButton = new Button();
         searchButton = new Button();
         algorithmComboBox = new ComboBox();
         time = new Label();
         similarity = new Label();
+        userPictureBox = new PictureBox();
         TLP.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
         SuspendLayout();
         // 
         // TLP
@@ -89,20 +90,6 @@ partial class MainForm
         title.TabIndex = 0;
         title.Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
         // 
-        // userPictureBox
-        // 
-        userPictureBox.Anchor = AnchorStyles.None;
-        userPictureBox.BackColor = Color.Transparent;
-        userPictureBox.BorderStyle = BorderStyle.FixedSingle;
-        userPictureBox.InitialImage = (Image)resources.GetObject("userPictureBox.InitialImage");
-        userPictureBox.Location = new Point(3, 33);
-        userPictureBox.MaximumSize = new Size(300, 350);
-        userPictureBox.Name = "userPictureBox";
-        userPictureBox.Size = new Size(300, 350);
-        userPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-        userPictureBox.TabIndex = 1;
-        userPictureBox.TabStop = false;
-        // 
         // MatchPictureBox
         // 
         MatchPictureBox.Anchor = AnchorStyles.None;
@@ -141,7 +128,6 @@ partial class MainForm
         // 
         // algorithmComboBox
         // 
-        selectedAlgorithm = Algorithm.None;
         algorithmComboBox.AutoCompleteCustomSource.AddRange(new string[] { "BM", "KMP" });
         algorithmComboBox.FormattingEnabled = true;
         algorithmComboBox.ImeMode = ImeMode.Off;
@@ -175,6 +161,20 @@ partial class MainForm
         similarity.TabIndex = 4;
         similarity.Text = "Similarity: ";
         // 
+        // userPictureBox
+        // 
+        userPictureBox.Anchor = AnchorStyles.None;
+        userPictureBox.BackColor = Color.Transparent;
+        userPictureBox.BorderStyle = BorderStyle.FixedSingle;
+        userPictureBox.InitialImage = (Image)resources.GetObject("userPictureBox.InitialImage");
+        userPictureBox.Location = new Point(3, 33);
+        userPictureBox.MaximumSize = new Size(300, 350);
+        userPictureBox.Name = "userPictureBox";
+        userPictureBox.Size = new Size(300, 350);
+        userPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+        userPictureBox.TabIndex = 1;
+        userPictureBox.TabStop = false;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -185,8 +185,8 @@ partial class MainForm
         Text = "MainForm";
         TLP.ResumeLayout(false);
         TLP.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
+        ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -195,13 +195,13 @@ partial class MainForm
 
     #region Andhika's Code
     // Load image
-    private void LoadImage(string imagePath)
+    private void LoadImage(PictureBox target, string imagePath)
     {
         if (!string.IsNullOrEmpty(imagePath))
         {
             try
             {
-                this.userPictureBox.Image = Image.FromFile(imagePath);
+                target.Image = Image.FromFile(imagePath);
             }
             catch (Exception ex)
             {
@@ -212,7 +212,7 @@ partial class MainForm
         {
             try
             {
-                this.userPictureBox.Image = Image.FromFile("C:\\Users\\Acer\\tmp\\Tubes3_Last-Day-on-ITB\\src\\frontend\\assets\\placeholder.png");
+                target.Image = Image.FromFile("C:\\Users\\Acer\\tmp\\Tubes3_Last-Day-on-ITB\\src\\frontend\\assets\\placeholder.png");
             }
             catch (Exception)
             {
@@ -231,7 +231,9 @@ partial class MainForm
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             string selectedImagePath = openFileDialog.FileName;
-            LoadImage(selectedImagePath);
+            send.path = selectedImagePath;
+            time.Text = selectedImagePath;
+            LoadImage(userPictureBox, selectedImagePath);
         }
     }
 
@@ -240,22 +242,35 @@ partial class MainForm
     {
         if (algorithmComboBox.SelectedIndex == 0)
         {
-            selectedAlgorithm = Algorithm.BM;
+            send.algo = algorithmComboBox.SelectedIndex;
         }
         else if (algorithmComboBox.SelectedIndex == 1)
         {
-            selectedAlgorithm = Algorithm.KMP;
-        }
-        else if(algorithmComboBox.SelectedIndex == -1)
-        {
-            selectedAlgorithm = Algorithm.None;
+            send.algo = algorithmComboBox.SelectedIndex;
         }
     }
 
     // To start the search using the selected algorithm
     private void StartSearch(object sender, EventArgs e)
     {
-        time.Text = "Search Time: " + selectedAlgorithm;
+        if(!(send.algo == 0 || send.algo == 1))
+        {
+            throw new Exception("Missing Algorithm");
+        }
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+        (string path, string Name, string CorruptName, float percent) result  = Gabungan.Gabungan.getPathAndName(send.path, send.algo);
+        stopwatch.Stop();
+        TimeSpan ts = stopwatch.Elapsed;
+        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+        time.Text = "Search Time: " + elapsedTime;
+        afterSearch(result);
+    }
+
+    private void afterSearch((string path, string Name, string CorruptName, float percent) result)
+    {
+        LoadImage(MatchPictureBox, result.path);
+
     }
 
     #endregion
@@ -269,6 +284,5 @@ partial class MainForm
     private Button searchButton;
     private Label time;
     private Label similarity;
-    private enum Algorithm { None, BM, KMP };
-    private Algorithm selectedAlgorithm;
+    private (string path, int algo) send = (null, -1);
 }

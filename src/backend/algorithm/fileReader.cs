@@ -1,5 +1,5 @@
 namespace reader{
-    class Reader{
+    public class Reader{
         public static List<string> ReadFileName(){
             string directoryPath = "test/SOCOFing/Real/";
 

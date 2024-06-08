@@ -3,9 +3,10 @@ using converter;
 using stringMatching;
 using System.Diagnostics;
 using reader;
+
 namespace Gabungan
 {
-    class Gabungan
+    public class Gabungan
     {
         static void Main()
         {
@@ -56,7 +57,7 @@ namespace Gabungan
             
 
         }
-        static (string path, string NameAsli, string NamaCorrupt, float percent) getPathAndName(string pathPattern, int algo)
+        public static (string path, string NameAsli, string NamaCorrupt, float percent) getPathAndName(string pathPattern, int algo)
         {
             List<string> names = Database_Operation.DB.ReadDatabaseName();
             List<string> patternAll = converter.Converter.readFile(pathPattern);
@@ -126,10 +127,9 @@ namespace Gabungan
                     }
                 }
                 return (maxPair.Value, name, corruptName, maxPair.Key); // return path dan nama 
-
             }
         }
-        static bool Solve(string pattern, string Text, int algo)
+        private static bool Solve(string pattern, string Text, int algo)
         {
             if(algo == 1){
                 return stringMatching.KMP.KMPSolve(Text, pattern);

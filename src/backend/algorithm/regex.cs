@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 namespace stringMatching
 {
-class RegularExpressions {
+public class RegularExpressions {
     private static Dictionary<char, string> formula = new Dictionary<char, string>() {
         {'a', "[aA4]?"},
         {'b', "[bB8]"}, 
