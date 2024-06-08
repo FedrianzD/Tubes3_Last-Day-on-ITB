@@ -1,6 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using Gabungan;
+using Database_Operation;
+using System.Windows.Forms;
 using System.Diagnostics;
-using Gabungan;
+using System.Text;
 
 namespace frontend;
 
@@ -42,9 +44,13 @@ partial class MainForm
         time = new Label();
         similarity = new Label();
         userPictureBox = new PictureBox();
+        Result = new Label();
+        statusStrip1 = new StatusStrip();
+        Status = new ToolStripStatusLabel();
         TLP.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
+        statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // TLP
@@ -67,7 +73,8 @@ partial class MainForm
         TLP.Controls.Add(time, 1, 4);
         TLP.Controls.Add(similarity, 2, 4);
         TLP.Controls.Add(userPictureBox, 0, 1);
-        TLP.Location = new Point(12, 12);
+        TLP.Controls.Add(Result, 2, 1);
+        TLP.Location = new Point(12, 38);
         TLP.Name = "TLP";
         TLP.RowCount = 4;
         TLP.RowStyles.Add(new RowStyle());
@@ -75,7 +82,7 @@ partial class MainForm
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-        TLP.Size = new Size(917, 437);
+        TLP.Size = new Size(932, 437);
         TLP.TabIndex = 0;
         TLP.Paint += TLP_Paint;
         // 
@@ -131,7 +138,7 @@ partial class MainForm
         algorithmComboBox.AutoCompleteCustomSource.AddRange(new string[] { "BM", "KMP" });
         algorithmComboBox.FormattingEnabled = true;
         algorithmComboBox.ImeMode = ImeMode.Off;
-        algorithmComboBox.Items.AddRange(new object[] { "BM", "KMP" });
+        algorithmComboBox.Items.AddRange(new string[] { "BM", "KMP" });
         algorithmComboBox.Location = new Point(309, 389);
         algorithmComboBox.MaxDropDownItems = 2;
         algorithmComboBox.Name = "algorithmComboBox";
@@ -147,9 +154,9 @@ partial class MainForm
         time.BackColor = Color.Transparent;
         time.Location = new Point(309, 417);
         time.Name = "time";
-        time.Size = new Size(77, 15);
+        time.Size = new Size(137, 15);
         time.TabIndex = 1;
-        time.Text = "Search Time: ";
+        time.Text = "Search Time: (hh:mm:ss)";
         // 
         // similarity
         // 
@@ -175,25 +182,59 @@ partial class MainForm
         userPictureBox.TabIndex = 1;
         userPictureBox.TabStop = false;
         // 
+        // Result
+        // 
+        Result.Anchor = AnchorStyles.None;
+        Result.AutoSize = true;
+        Result.CausesValidation = false;
+        Result.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Result.Location = new Point(839, 197);
+        Result.Name = "Result";
+        Result.Size = new Size(90, 21);
+        Result.TabIndex = 5;
+        Result.Text = "List Biodata";
+        // 
+        // statusStrip1
+        // 
+        statusStrip1.Items.AddRange(new ToolStripItem[] { Status });
+        statusStrip1.Location = new Point(0, 490);
+        statusStrip1.Name = "statusStrip1";
+        statusStrip1.Size = new Size(1064, 22);
+        statusStrip1.TabIndex = 7;
+        statusStrip1.Text = "statusStrip1";
+        // 
+        // Status
+        // 
+        Status.ActiveLinkColor = SystemColors.Highlight;
+        Status.BackColor = SystemColors.ActiveBorder;
+        Status.DisplayStyle = ToolStripItemDisplayStyle.Text;
+        Status.ForeColor = SystemColors.Highlight;
+        Status.Name = "Status";
+        Status.Size = new Size(69, 17);
+        Status.Text = "NOT READY";
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1064, 461);
+        ClientSize = new Size(1064, 512);
+        Controls.Add(statusStrip1);
         Controls.Add(TLP);
         Name = "MainForm";
-        Text = "MainForm";
+        Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
         TLP.ResumeLayout(false);
         TLP.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
+        statusStrip1.ResumeLayout(false);
+        statusStrip1.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
 
-    #region Andhika's Code
+    #region Functions
     // Load image
     private void LoadImage(PictureBox target, string imagePath)
     {
@@ -205,14 +246,14 @@ partial class MainForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading image: " + ex.Message);
+                MessageBox.Show(new StringBuilder("Error loading image: ").Append(ex.Message).ToString());
             }
         }
         else
         {
             try
             {
-                target.Image = Image.FromFile("C:\\Users\\Acer\\tmp\\Tubes3_Last-Day-on-ITB\\src\\frontend\\assets\\placeholder.png");
+                target.Image = Image.FromFile(@"C:\Users\Acer\tmp\Tubes3_Last-Day-on-ITB\src\frontend\assets\placeholder.png");
             }
             catch (Exception)
             {
@@ -234,6 +275,7 @@ partial class MainForm
             send.path = selectedImagePath;
             time.Text = selectedImagePath;
             LoadImage(userPictureBox, selectedImagePath);
+            Status.Text = "READY";
         }
     }
 
@@ -255,22 +297,42 @@ partial class MainForm
     {
         if(!(send.algo == 0 || send.algo == 1))
         {
-            throw new Exception("Missing Algorithm");
+            MessageBox.Show("Missing Algorithm");
         }
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
-        (string path, string Name, string CorruptName, float percent) result  = Gabungan.Gabungan.getPathAndName(send.path, send.algo);
-        stopwatch.Stop();
-        TimeSpan ts = stopwatch.Elapsed;
-        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-        time.Text = "Search Time: " + elapsedTime;
-        afterSearch(result);
+        try
+        {
+            (string path, string Name, string CorruptName, float percent) result = Gabungan.Gabungan.getPathAndName(send.path, send.algo);
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00} ", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            time.Text = new StringBuilder("Search Time: ").Append(elapsedTime).ToString();
+            showResult(result);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(new StringBuilder("Error: ").Append(ex.Message).ToString());
+        }
     }
 
-    private void afterSearch((string path, string Name, string CorruptName, float percent) result)
+    private void showResult((string path, string Name, string CorruptName, float percent) result)
     {
         LoadImage(MatchPictureBox, result.path);
-
+        similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
+        (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.ReadDatabaseCheck(result.Name);
+        Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
+                                        $"Nama              :   {query.nama}\n").Append(
+                                        $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
+                                        $"Tanggal Lahir     :   {query.tanggal_lahir}\n").Append(
+                                        $"Jenis Kelamin     :   {query.jenis_kelamin}\n").Append(
+                                        $"Golongan Darah    :   {query.golongan_darah}\n").Append(
+                                        $"Alamat            :   {query.alamat}\n").Append(
+                                        $"Agama             :   {query.agama}\n").Append(
+                                        $"Status Perkawinan :   {query.status_perkawinan}\n").Append(
+                                        $"Pekerjaan         :   {query.pekerjaan}\n").Append(
+                                        $"Kewarganegaraan   :   {query.kewarganegaraan}\n")
+                                        .ToString();
     }
 
     #endregion
@@ -285,4 +347,7 @@ partial class MainForm
     private Label time;
     private Label similarity;
     private (string path, int algo) send = (null, -1);
+    private Label Result;
+    private StatusStrip statusStrip1;
+    private ToolStripStatusLabel Status;
 }
