@@ -1,8 +1,6 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
-using System.Data.SQLite;
+using MySqlConnector;
 using converter;
-using Org.BouncyCastle.Utilities;
 using stringMatching;
 
 namespace Database_Operation
@@ -23,22 +21,23 @@ namespace Database_Operation
             //     Console.WriteLine(pair.name + " " + pair.path);
             // }
             // InsertDatabase();
+            ReadDatabase();
             // Console.ReadKey();
-            string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
-            List<string> arr = converter.Converter.readFile(path);
+            // string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
+            // List<string> arr = converter.Converter.readFile(path);
+            // // foreach(string a in arr){
+            // //     Console.WriteLine(a);
+            // //     File.WriteAllText("a.txt", a);
+            // //     Console.WriteLine("batas cok");
+            // // }
+            // string pattern = converter.Converter.getPattern(arr);
             // foreach(string a in arr){
-            //     Console.WriteLine(a);
-            //     File.WriteAllText("a.txt", a);
-            //     Console.WriteLine("batas cok");
-            // }
-            string pattern = converter.Converter.getPattern(arr);
-            foreach(string a in arr){
-                if(stringMatching.BM.BMmatch(a, pattern) != -1){
-                    Console.WriteLine("aaaaa");
-                }
+            //     if(stringMatching.BM.BMmatch(a, pattern) != -1){
+            //         Console.WriteLine("aaaaa");
+            //     }
 
-            }
-            File.WriteAllLines("a.txt", arr);
+            // }
+            // File.WriteAllLines("a.txt", arr);
             
 
         }
@@ -49,7 +48,8 @@ namespace Database_Operation
 
             // connect ke database di server
             MySqlConnection connection;
-            connectionString = "Server=localhost;Database=stima;User ID=root;Password=12345678;";
+            connectionString = "Server=localhost;Port=3306;Database=stima;UID=root;Password=1234;";
+
             connection = new MySqlConnection(connectionString);
 
             try
