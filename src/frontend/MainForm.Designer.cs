@@ -57,6 +57,7 @@ partial class MainForm
         // TLP
         // 
         TLP.Anchor = AnchorStyles.None;
+        TLP.AutoScroll = true;
         TLP.AutoSize = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
