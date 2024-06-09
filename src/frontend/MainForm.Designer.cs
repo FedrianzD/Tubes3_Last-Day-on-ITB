@@ -44,8 +44,8 @@ partial class MainForm
         similarity = new Label();
         userPictureBox = new PictureBox();
         Result = new Label();
-        time = new Label();
         MatchPictureBox = new PictureBox();
+        time = new Label();
         statusStrip = new StatusStrip();
         Status = new ToolStripStatusLabel();
         TLP.SuspendLayout();
@@ -70,9 +70,9 @@ partial class MainForm
         TLP.Controls.Add(similarity, 2, 4);
         TLP.Controls.Add(userPictureBox, 0, 1);
         TLP.Controls.Add(Result, 2, 1);
-        TLP.Controls.Add(time, 1, 4);
         TLP.Controls.Add(MatchPictureBox, 1, 1);
-        TLP.Location = new Point(10, 0);
+        TLP.Controls.Add(time, 1, 4);
+        TLP.Location = new Point(25, 25);
         TLP.Name = "TLP";
         TLP.RowCount = 4;
         TLP.RowStyles.Add(new RowStyle());
@@ -80,7 +80,7 @@ partial class MainForm
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
-        TLP.Size = new Size(1307, 436);
+        TLP.Size = new Size(1565, 449);
         TLP.TabIndex = 0;
         TLP.Paint += TLP_Paint;
         // 
@@ -99,6 +99,7 @@ partial class MainForm
         // 
         selectImageButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         selectImageButton.AutoSize = true;
+        selectImageButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         selectImageButton.BackColor = SystemColors.Control;
         selectImageButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
         selectImageButton.Location = new Point(3, 389);
@@ -112,10 +113,12 @@ partial class MainForm
         // searchButton
         // 
         searchButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        searchButton.AutoSize = true;
+        searchButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         searchButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
         searchButton.Location = new Point(926, 389);
         searchButton.Name = "searchButton";
-        searchButton.Size = new Size(75, 27);
+        searchButton.Size = new Size(57, 27);
         searchButton.TabIndex = 3;
         searchButton.Text = "Search";
         searchButton.UseVisualStyleBackColor = true;
@@ -147,7 +150,7 @@ partial class MainForm
         similarity.ForeColor = Color.DarkOrange;
         similarity.Location = new Point(926, 419);
         similarity.Name = "similarity";
-        similarity.Size = new Size(67, 17);
+        similarity.Size = new Size(67, 30);
         similarity.TabIndex = 4;
         similarity.Text = "Similarity: ";
         // 
@@ -174,23 +177,10 @@ partial class MainForm
         Result.Location = new Point(926, 33);
         Result.Margin = new Padding(3);
         Result.Name = "Result";
-        Result.Size = new Size(378, 350);
+        Result.Size = new Size(636, 350);
         Result.TabIndex = 5;
         Result.Text = resources.GetString("Result.Text");
         Result.TextAlign = ContentAlignment.MiddleLeft;
-        // 
-        // time
-        // 
-        time.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-        time.AutoSize = true;
-        time.BackColor = Color.Transparent;
-        time.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        time.ForeColor = SystemColors.MenuHighlight;
-        time.Location = new Point(309, 419);
-        time.Name = "time";
-        time.Size = new Size(148, 17);
-        time.TabIndex = 1;
-        time.Text = "Search Time: (hh:mm:ss)";
         // 
         // MatchPictureBox
         // 
@@ -206,12 +196,25 @@ partial class MainForm
         MatchPictureBox.TabIndex = 2;
         MatchPictureBox.TabStop = false;
         // 
+        // time
+        // 
+        time.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        time.AutoSize = true;
+        time.BackColor = Color.Transparent;
+        time.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        time.ForeColor = SystemColors.MenuHighlight;
+        time.Location = new Point(309, 419);
+        time.Name = "time";
+        time.Size = new Size(148, 30);
+        time.TabIndex = 1;
+        time.Text = "Search Time: (hh:mm:ss)";
+        // 
         // statusStrip
         // 
         statusStrip.Items.AddRange(new ToolStripItem[] { Status });
-        statusStrip.Location = new Point(0, 449);
+        statusStrip.Location = new Point(0, 493);
         statusStrip.Name = "statusStrip";
-        statusStrip.Size = new Size(1404, 22);
+        statusStrip.Size = new Size(1602, 22);
         statusStrip.TabIndex = 7;
         statusStrip.Text = "statusStrip";
         // 
@@ -230,7 +233,7 @@ partial class MainForm
         // 
         AutoScaleMode = AutoScaleMode.Inherit;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        ClientSize = new Size(1404, 471);
+        ClientSize = new Size(1602, 515);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
