@@ -342,7 +342,7 @@ partial class MainForm
     private void showResult((string path, string Name, string CorruptName, float percent) result)
     {
         similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
-        if (result.percent >= 80)
+        if (result.percent >= 60)
         {
             LoadImage(MatchPictureBox, result.path);
             (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.CorruptName);

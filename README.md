@@ -42,7 +42,7 @@ Pada project ini, kami akan menggunakan algoritma Boyer-Moore dan Knuth-Morris-P
 2. Install Docker dan nyalakan docker dengan command
 `docker-compose up -d`
 2. Uninstall Mariadb
-3. Jika ingin menggunakan file sql lain, letakan file pada folder src/backend/database dan jalankan command `iconv -f utf-16 -t utf-8 [nama file].sql > stima_encrypt_utf-8.sql` menggunakan wsl.
+3. Jika ingin menggunakan file sql lain, letakan file pada folder src/backend/database dan jalankan command `iconv -f utf-16 -t utf-8 [nama file].sql > stima_encrypt_utf-8 copy.sql` menggunakan wsl.
 4. Jalankan `docker-compose down -v` untuk menghapus volume pada docker. 
 
 ## Usage
