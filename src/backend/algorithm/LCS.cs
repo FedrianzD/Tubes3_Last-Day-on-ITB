@@ -64,11 +64,7 @@ namespace stringMatching
                 persentase = persentase * 100 / pattern.Length ;
                 return persentase;
             }
-        // public static void Main() {
-        //     string subset = "heloooooooooohlllooooooooooooooo" ;
-        //     string pattern = "brooomacuyhelbromaoooo" ;
-        //     Console.WriteLine(LongestCommonSubsequence(pattern, subset)) ;
-        // }
+        
     }
     public class Levenshtein
     {
