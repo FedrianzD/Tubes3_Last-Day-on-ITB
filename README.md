@@ -56,3 +56,8 @@ TBA
 - [Tugas Besar 3 IF2211 Strategi Algoritma Semester II tahun 2023/2024](https://docs.google.com/document/d/15Dk7FbcraVDCYDYtT6d743h649ZMN6xE/edit)
 - [This Repository](https://github.com/CrystalNoob/Tubes3_Last-day-on-ITB)
 - [The Report](https://docs.google.com/document/d/10H--678aPKPdMAKm2CON_9tGlog8Y7BdmlD5TyK3IJs/edit)
+
+
+docker-compose down -v
+docker-compose up -d
+iconv -f utf-16 -t utf-8 stima3.sql > stima.sql
