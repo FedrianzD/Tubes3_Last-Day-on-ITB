@@ -10,6 +10,10 @@ namespace Gabungan
     {
         static void Main()
         {
+            // Database_Operation.DB.EncryptDatabaseBiodata();
+            // Database_Operation.DB.ReadDatabaseBiodataAll();
+            // Database_Operation.DB.EncryptDatabaseSidikJari();
+            // Database_Operation.DB.ReadDatabaseSidikJari();
             // Connect();
             // List<string> names = [];
             // reader.Reader.ReadFileName();
@@ -24,12 +28,12 @@ namespace Gabungan
             // Database_Operation.DB.InsertDatabase();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            (string path, string Name, string CorruptName, float percent) res = getPathAndName("test/SOCOFing/Real/592__M_Left_index_finger.BMP", 0);
-            Console.WriteLine(res.path);
-            Console.WriteLine(res.Name);
-            Console.WriteLine(res.CorruptName);
+            (string path, string Name, string CorruptName, float percent) res = getPathAndName("test/SOCOFing/Real/263__F_Left_index_finger.BMP", 0);
+            Console.WriteLine("Path " + res.path);
+            Console.WriteLine("Nama asli: " + res.Name + " Hasil decrypt " + encryption.Encryption.Decrypt(res.Name, "LastDayonITB", 5));
+            Console.WriteLine("Nama Corrupt " + res.CorruptName + " Hasil decrypt " + encryption.Encryption.Decrypt(res.CorruptName, "LastDayonITB", 5));
             Console.WriteLine(res.percent);
-            Database_Operation.DB.ReadDatabaseCheck(res.CorruptName);
+            Database_Operation.DB.SearchDatabaseWithName(res.CorruptName);
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
@@ -37,7 +41,6 @@ namespace Gabungan
             ts.Milliseconds / 10);
 
             Console.WriteLine("RunTime " + elapsedTime);
-
             // Console.ReadKey();
             // string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
             // List<string> arr = converter.Converter.readFile(path);
@@ -54,58 +57,64 @@ namespace Gabungan
 
             // }
             // File.WriteAllLines("a.txt", arr);
-            
+
 
         }
         public static (string path, string NameAsli, string NamaCorrupt, float percent) getPathAndName(string pathPattern, int algo)
-        {
+        {   
+            string keyv = "LastDayonITB";
+            int keyc = 5;
             List<string> names = Database_Operation.DB.ReadDatabaseName();
             List<string> patternAll = converter.Converter.readFile(pathPattern);
             string pattern = converter.Converter.getPattern(patternAll);
-            List<KeyValuePair<string,string>> SidikJariNamaTmp = Database_Operation.DB.ReadDatabaseSidikJari();
-            Dictionary<string,string> SidikJariNama = SidikJariNamaTmp.ToDictionary(pair => pair.Key, pair => pair.Value);
+            List<KeyValuePair<string, string>> SidikJariNamaTmp = Database_Operation.DB.ReadDatabaseSidikJari();
+            Dictionary<string, string> SidikJariNama = SidikJariNamaTmp.ToDictionary(pair => pair.Key, pair => pair.Value);
             string pathFound = "";
             string name = "";
             bool found = false;
             float diffMax = 0; // diffMin untuk menghitung kemiripan di gambar
             float diff; // diff untuk menghitung perbedaan di tiap row
             List<KeyValuePair<float, string>> diffMaxs = []; // minimum dan pathnya
-            
-            foreach(var pair in SidikJariNama)
+
+            foreach (var pair in SidikJariNama)
             {
                 string pathOri = pair.Key;
                 List<string> Originals = converter.Converter.readFile(pathOri);
-                foreach(string Original in Originals)
+                foreach (string Original in Originals)
                 {
-                    if(Solve(pattern, Original, algo))
-                    {   
+                    if (Solve(pattern, Original, algo))
+                    {
                         found = true;
                         pathFound = pathOri;
                         name = pair.Value;
                         break; // kalo ketemu yang sama persis break aja
                     }
                     diff = stringMatching.Levenshtein.LevenshteinDistance(pattern, Original);
-                    if(diff > diffMax)
+                    if (diff > diffMax)
                     {
                         diffMax = diff; // nyari diff paling kecil di satu gambar
                     }
 
                 }
-                if(found)
+                if (found)
                 {
                     break; // kalo ketemu break lagi juga
                 }
-                diffMaxs.Add(new KeyValuePair<float, string>(diffMax,pathOri)); // masukkin nilai terkecil pada suatu gambar ke dalam list
+                diffMaxs.Add(new KeyValuePair<float, string>(diffMax, pathOri)); // masukkin nilai terkecil pada suatu gambar ke dalam list
                 diffMax = 0;
             }
-            if(found)
-            {   
-                
-                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(name);
+            if (found)
+            {
+
+                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(encryption.Encryption.Decrypt(name,keyv,keyc)); // decrypt dulu
                 string corruptName = "";
-                foreach(string nama in names)
-                {
-                    if(stringMatching.RegularExpressions.regexMatching(nama, patternNamaAsli)){
+                string decryptnama = "";
+                foreach (string nama in names)
+                {   
+                    decryptnama = encryption.Encryption.Decrypt(nama, keyv, keyc); // decrypt dulu
+                    // Console.WriteLine(decryptnama);
+                    if (stringMatching.RegularExpressions.regexMatching(decryptnama, patternNamaAsli)) // regex
+                    {
                         corruptName = nama;
                         break;
                     }
@@ -117,11 +126,13 @@ namespace Gabungan
                 KeyValuePair<float, string> maxPair = diffMaxs.OrderBy(pair => pair.Key).Last(); // ambil yang paling besar
                 // percent, path
                 name = SidikJariNama.GetValueOrDefault(maxPair.Value);
-                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(name);
+                string patternNamaAsli = stringMatching.RegularExpressions.createPattern(encryption.Encryption.Decrypt(name,keyv,keyc)); // decrypt
                 string corruptName = "";
-                foreach(string nama in names)
+                foreach (string nama in names)
                 {
-                    if(stringMatching.RegularExpressions.regexMatching(nama, patternNamaAsli)){
+                    string decryptnama = encryption.Encryption.Decrypt(nama, keyv, keyc);
+                    if (stringMatching.RegularExpressions.regexMatching(decryptnama, patternNamaAsli))
+                    {
                         corruptName = nama;
                         break;
                     }
@@ -131,12 +142,15 @@ namespace Gabungan
         }
         private static bool Solve(string pattern, string Text, int algo)
         {
-            if(algo == 1){
+            if (algo == 1)
+            {
                 return stringMatching.KMP.KMPSolve(Text, pattern);
-            }else{
+            }
+            else
+            {
                 return stringMatching.BM.BMmatch(Text, pattern) != -1;
             }
         }
-            
+
     }
 }

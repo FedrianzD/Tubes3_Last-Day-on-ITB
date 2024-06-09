@@ -295,7 +295,7 @@ partial class MainForm
     // To start the search using the selected algorithm
     private void StartSearch(object sender, EventArgs e)
     {
-        if(!(send.algo == 0 || send.algo == 1))
+        if (!(send.algo == 0 || send.algo == 1))
         {
             MessageBox.Show("Missing Algorithm");
             return;
@@ -321,7 +321,7 @@ partial class MainForm
     {
         LoadImage(MatchPictureBox, result.path);
         similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
-        (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.ReadDatabaseCheck(result.Name);
+        (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.Name);
         Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
                                         $"Nama              :   {query.nama}\n").Append(
                                         $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
