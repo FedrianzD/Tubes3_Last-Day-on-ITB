@@ -74,6 +74,7 @@ namespace Database_Operation
                 Console.WriteLine("Connection Open!");
                 // name = encryption.Encryption.Encrypt(name, keyv, keyc);
                 // bikin querynya
+                name = name.Replace("\\", "\\\\");
                 string query = $"SELECT * FROM biodata WHERE nama='{name}'";
 
                 // bikin commandnya
