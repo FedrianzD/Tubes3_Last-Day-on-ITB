@@ -58,7 +58,6 @@ partial class MainForm
         // 
         TLP.Anchor = AnchorStyles.None;
         TLP.AutoScroll = true;
-        TLP.AutoSize = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
         TLP.ColumnStyles.Add(new ColumnStyle());
@@ -229,18 +228,13 @@ partial class MainForm
         // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(96F, 96F);
-        AutoScaleMode = AutoScaleMode.Dpi;
+        AutoScaleMode = AutoScaleMode.Inherit;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         ClientSize = new Size(1404, 471);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
         Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
-        PaddingChanged += forceSizeLocationRecalc;
-        DpiChangedBeforeParent += forceSizeLocationRecalc;
-        DpiChangedAfterParent += forceSizeLocationRecalc;
-        Resize += forceSizeLocationRecalc;
         TLP.ResumeLayout(false);
         TLP.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
@@ -279,7 +273,6 @@ partial class MainForm
                 MessageBox.Show("Error loading default image");
             }
         }
-        forceSizeLocationRecalc(null, null);
     }
 
     // Prompt to select image
@@ -360,13 +353,6 @@ partial class MainForm
                                         $"Pekerjaan         :   {query.pekerjaan}\n").Append(
                                         $"Kewarganegaraan   :   {query.kewarganegaraan}\n")
                                         .ToString();
-        forceSizeLocationRecalc(null, null);
-    }
-
-    private void forceSizeLocationRecalc(object sender, EventArgs e)
-    {
-        Width = TLP.Width + 100;
-        Height = TLP.Height + statusStrip.Height + 50;
     }
 
     #endregion
