@@ -45,8 +45,8 @@ partial class MainForm
         similarity = new Label();
         userPictureBox = new PictureBox();
         Result = new Label();
-        Status = new ToolStripStatusLabel();
         statusStrip = new StatusStrip();
+        Status = new ToolStripStatusLabel();
         TLP.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
@@ -55,10 +55,8 @@ partial class MainForm
         // 
         // TLP
         // 
-        TLP.AllowDrop = true;
         TLP.Anchor = AnchorStyles.None;
         TLP.AutoScroll = true;
-        TLP.AutoSize = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
         TLP.ColumnStyles.Add(new ColumnStyle());
@@ -74,7 +72,8 @@ partial class MainForm
         TLP.Controls.Add(similarity, 2, 4);
         TLP.Controls.Add(userPictureBox, 0, 1);
         TLP.Controls.Add(Result, 2, 1);
-        TLP.Location = new Point(12, 38);
+        TLP.Location = new Point(0, 0);
+        TLP.Margin = new Padding(0);
         TLP.Name = "TLP";
         TLP.RowCount = 4;
         TLP.RowStyles.Add(new RowStyle());
@@ -82,7 +81,7 @@ partial class MainForm
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-        TLP.Size = new Size(932, 437);
+        TLP.Size = new Size(1256, 437);
         TLP.TabIndex = 0;
         TLP.Paint += TLP_Paint;
         // 
@@ -187,12 +186,21 @@ partial class MainForm
         Result.Anchor = AnchorStyles.None;
         Result.AutoSize = true;
         Result.CausesValidation = false;
-        Result.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Result.Location = new Point(839, 197);
+        Result.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        Result.Location = new Point(839, 103);
         Result.Name = "Result";
-        Result.Size = new Size(90, 21);
+        Result.Size = new Size(414, 209);
         Result.TabIndex = 5;
-        Result.Text = "List Biodata";
+        Result.Text = resources.GetString("Result.Text");
+        // 
+        // statusStrip
+        // 
+        statusStrip.Items.AddRange(new ToolStripItem[] { Status });
+        statusStrip.Location = new Point(0, 449);
+        statusStrip.Name = "statusStrip";
+        statusStrip.Size = new Size(1484, 22);
+        statusStrip.TabIndex = 7;
+        statusStrip.Text = "statusStrip";
         // 
         // Status
         // 
@@ -204,20 +212,11 @@ partial class MainForm
         Status.Size = new Size(69, 17);
         Status.Text = "NOT READY";
         // 
-        // statusStrip
-        // 
-        statusStrip.Items.AddRange(new ToolStripItem[] { Status });
-        statusStrip.Location = new Point(0, 490);
-        statusStrip.Name = "statusStrip";
-        statusStrip.Size = new Size(1064, 22);
-        statusStrip.TabIndex = 7;
-        statusStrip.Text = "statusStrip";
-        // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1064, 512);
+        AutoScaleDimensions = new SizeF(96F, 96F);
+        AutoScaleMode = AutoScaleMode.Dpi;
+        ClientSize = new Size(1484, 471);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
@@ -323,7 +322,7 @@ partial class MainForm
         similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
         (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.Name);
         Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
-                                        $"Nama              :   {query.nama}\n").Append(
+                                        $"Nama              :   {result.Name}\n").Append(
                                         $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
                                         $"Tanggal Lahir     :   {query.tanggal_lahir}\n").Append(
                                         $"Jenis Kelamin     :   {query.jenis_kelamin}\n").Append(

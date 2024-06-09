@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
+  <!-- 
     Microsoft ResX Schema 
-
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -122,7 +122,7 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAASwCAMAAAA0b96XAAAABGdBTUEAALGPC/xhBQAAADZQTFRF8fP1
         wsvSxc7V7vDz7O/y6e3v1tzhy9LZ2d/jzdTa0tne4ubq5+ru3+ToyNDX3OHmz9bc5OnsXJ6EWQAAAAlw
-        SFlzAAAOvQAADr0BR/uQrQAAI7hJREFUeF7t3Qli27iyRuF3IzlDx07i/W/2eThJbEeiSAKQUFXnW0C3
+        SFlzAAAOvAAADrwBlbxySQAAI7hJREFUeF7t3Qli27iyRuF3IzlDx07i/W/2eThJbEeiSAKQUFXnW0C3
         UT8YEqP+TwuO3/6n2ugJOuMrdVJR9AOd8/iJSqkkuoHO8jOrNHqBFviZVRh9QEu++5lVFl1Ai/zMKose
         oAs+Uy8VQ/66xM+smohfF919oWSqhPR12eE/aqZCCF9rON9bD9FrFZfVyyF5reNApBqC10oORIohd63m
         QKQUUtd6rohUQuja4O4HxVN+ZK4t3JpVB5FrG4fqVRC4NnKoXgR5a6sHCqjciFub3TuZVQFpa7ujq+oF
@@ -282,7 +282,7 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAASwCAMAAAA0b96XAAAABGdBTUEAALGPC/xhBQAAADZQTFRF8fP1
         wsvSxc7V7vDz7O/y6e3v1tzhy9LZ2d/jzdTa0tne4ubq5+ru3+ToyNDX3OHmz9bc5OnsXJ6EWQAAAAlw
-        SFlzAAAOvQAADr0BR/uQrQAAI7hJREFUeF7t3Qli27iyRuF3IzlDx07i/W/2eThJbEeiSAKQUFXnW0C3
+        SFlzAAAOvAAADrwBlbxySQAAI7hJREFUeF7t3Qli27iyRuF3IzlDx07i/W/2eThJbEeiSAKQUFXnW0C3
         UT8YEqP+TwuO3/6n2ugJOuMrdVJR9AOd8/iJSqkkuoHO8jOrNHqBFviZVRh9QEu++5lVFl1Ai/zMKose
         oAs+Uy8VQ/66xM+smohfF919oWSqhPR12eE/aqZCCF9rON9bD9FrFZfVyyF5reNApBqC10oORIohd63m
         QKQUUtd6rohUQuja4O4HxVN+ZK4t3JpVB5FrG4fqVRC4NnKoXgR5a6sHCqjciFub3TuZVQFpa7ujq+oF
@@ -438,7 +438,25 @@
         rkJggg==
 </value>
   </data>
-  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="Result.Text" xml:space="preserve">
+    <value>NIK               :   (NIK)
+Nama              :   (nama)
+Tempat Lahir      :   (tempat_lahir)
+Tanggal Lahir     :   (tanggal_lahir)
+Jenis Kelamin     :   (jenis_kelamin)
+Golongan Darah    :   (golongan_darah)
+Alamat            :   (alamat)
+Agama             :   (agama)
+Status Perkawinan :   (status_perkawinan)
+Pekerjaan         :   (pekerjaan)
+Kewarganegaraan   :   (kewarganegaraan)
+</value>
+  </data>
+  <data name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
 </root>
