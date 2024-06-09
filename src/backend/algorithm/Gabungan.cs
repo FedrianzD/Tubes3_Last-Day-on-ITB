@@ -29,7 +29,7 @@ namespace Gabungan
             Console.WriteLine(res.Name);
             Console.WriteLine(res.CorruptName);
             Console.WriteLine(res.percent);
-            Database_Operation.DB.ReadDatabaseCheck(res.Name);
+            Database_Operation.DB.ReadDatabaseCheck(res.CorruptName);
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
