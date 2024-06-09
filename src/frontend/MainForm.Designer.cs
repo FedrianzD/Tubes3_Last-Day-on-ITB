@@ -1,5 +1,6 @@
 ﻿using Gabungan;
 using Database_Operation;
+using encryption;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text;
@@ -347,7 +348,7 @@ partial class MainForm
         similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
         (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.Name);
         Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
-                                        $"Nama              :   {result.Name}\n").Append(
+                                        $"Nama              :   {encryption.Encryption.Decrypt(result.Name, "LastDayonITB", 5)}\n").Append(
                                         $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
                                         $"Tanggal Lahir     :   {query.tanggal_lahir}\n").Append(
                                         $"Jenis Kelamin     :   {query.jenis_kelamin}\n").Append(
