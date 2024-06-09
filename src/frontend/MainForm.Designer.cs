@@ -37,86 +37,73 @@ partial class MainForm
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         TLP = new TableLayoutPanel();
         title = new Label();
-        MatchPictureBox = new PictureBox();
         selectImageButton = new Button();
         searchButton = new Button();
         algorithmComboBox = new ComboBox();
-        time = new Label();
         similarity = new Label();
         userPictureBox = new PictureBox();
         Result = new Label();
+        time = new Label();
+        MatchPictureBox = new PictureBox();
         statusStrip = new StatusStrip();
         Status = new ToolStripStatusLabel();
         TLP.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         statusStrip.SuspendLayout();
         SuspendLayout();
         // 
         // TLP
         // 
-        TLP.Anchor = AnchorStyles.None;
-        TLP.AutoScroll = true;
+        TLP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        TLP.AutoSize = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
         TLP.ColumnStyles.Add(new ColumnStyle());
         TLP.ColumnStyles.Add(new ColumnStyle());
         TLP.ColumnStyles.Add(new ColumnStyle());
-        TLP.ColumnStyles.Add(new ColumnStyle());
         TLP.Controls.Add(title, 1, 0);
-        TLP.Controls.Add(MatchPictureBox, 1, 1);
         TLP.Controls.Add(selectImageButton, 0, 3);
         TLP.Controls.Add(searchButton, 2, 3);
         TLP.Controls.Add(algorithmComboBox, 1, 3);
-        TLP.Controls.Add(time, 1, 4);
         TLP.Controls.Add(similarity, 2, 4);
         TLP.Controls.Add(userPictureBox, 0, 1);
         TLP.Controls.Add(Result, 2, 1);
-        TLP.Location = new Point(0, 0);
-        TLP.Margin = new Padding(0);
+        TLP.Controls.Add(time, 1, 4);
+        TLP.Controls.Add(MatchPictureBox, 1, 1);
+        TLP.Location = new Point(10, 0);
+        TLP.Margin = new Padding(5);
         TLP.Name = "TLP";
         TLP.RowCount = 4;
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
-        TLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-        TLP.Size = new Size(1256, 437);
+        TLP.RowStyles.Add(new RowStyle());
+        TLP.Size = new Size(1307, 436);
         TLP.TabIndex = 0;
         TLP.Paint += TLP_Paint;
         // 
         // title
         // 
         title.AutoSize = true;
-        title.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        title.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         title.ForeColor = Color.RoyalBlue;
         title.Location = new Point(309, 0);
         title.Name = "title";
-        title.Size = new Size(524, 30);
+        title.Size = new Size(611, 30);
         title.TabIndex = 0;
         title.Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
         // 
-        // MatchPictureBox
-        // 
-        MatchPictureBox.Anchor = AnchorStyles.None;
-        MatchPictureBox.BackColor = Color.Transparent;
-        MatchPictureBox.BorderStyle = BorderStyle.FixedSingle;
-        MatchPictureBox.InitialImage = (Image)resources.GetObject("MatchPictureBox.InitialImage");
-        MatchPictureBox.Location = new Point(421, 33);
-        MatchPictureBox.MaximumSize = new Size(430, 350);
-        MatchPictureBox.Name = "MatchPictureBox";
-        MatchPictureBox.Size = new Size(300, 350);
-        MatchPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-        MatchPictureBox.TabIndex = 2;
-        MatchPictureBox.TabStop = false;
-        // 
         // selectImageButton
         // 
+        selectImageButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         selectImageButton.AutoSize = true;
         selectImageButton.BackColor = SystemColors.Control;
+        selectImageButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
         selectImageButton.Location = new Point(3, 389);
         selectImageButton.Name = "selectImageButton";
-        selectImageButton.Size = new Size(84, 25);
+        selectImageButton.Size = new Size(92, 27);
         selectImageButton.TabIndex = 2;
         selectImageButton.Text = "Select Image";
         selectImageButton.UseVisualStyleBackColor = false;
@@ -124,9 +111,11 @@ partial class MainForm
         // 
         // searchButton
         // 
-        searchButton.Location = new Point(839, 389);
+        searchButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        searchButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        searchButton.Location = new Point(926, 389);
         searchButton.Name = "searchButton";
-        searchButton.Size = new Size(75, 23);
+        searchButton.Size = new Size(75, 27);
         searchButton.TabIndex = 3;
         searchButton.Text = "Search";
         searchButton.UseVisualStyleBackColor = true;
@@ -134,36 +123,31 @@ partial class MainForm
         // 
         // algorithmComboBox
         // 
+        algorithmComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         algorithmComboBox.AutoCompleteCustomSource.AddRange(new string[] { "BM", "KMP" });
+        algorithmComboBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
         algorithmComboBox.FormattingEnabled = true;
         algorithmComboBox.ImeMode = ImeMode.Off;
         algorithmComboBox.Items.AddRange(new object[] { "BM", "KMP" });
         algorithmComboBox.Location = new Point(309, 389);
         algorithmComboBox.MaxDropDownItems = 2;
         algorithmComboBox.Name = "algorithmComboBox";
-        algorithmComboBox.Size = new Size(166, 23);
+        algorithmComboBox.Size = new Size(166, 25);
         algorithmComboBox.Sorted = true;
         algorithmComboBox.TabIndex = 1;
         algorithmComboBox.Text = "Select Algorithms to Use";
         algorithmComboBox.SelectedIndexChanged += algorithm_SelectedIndexChanged;
         // 
-        // time
-        // 
-        time.AutoSize = true;
-        time.BackColor = Color.Transparent;
-        time.Location = new Point(309, 417);
-        time.Name = "time";
-        time.Size = new Size(137, 15);
-        time.TabIndex = 1;
-        time.Text = "Search Time: (hh:mm:ss)";
-        // 
         // similarity
         // 
+        similarity.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
         similarity.AutoSize = true;
         similarity.BackColor = Color.Transparent;
-        similarity.Location = new Point(839, 417);
+        similarity.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        similarity.ForeColor = Color.DarkOrange;
+        similarity.Location = new Point(926, 419);
         similarity.Name = "similarity";
-        similarity.Size = new Size(62, 15);
+        similarity.Size = new Size(67, 17);
         similarity.TabIndex = 4;
         similarity.Text = "Similarity: ";
         // 
@@ -183,48 +167,83 @@ partial class MainForm
         // 
         // Result
         // 
-        Result.Anchor = AnchorStyles.None;
+        Result.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         Result.AutoSize = true;
         Result.CausesValidation = false;
         Result.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        Result.Location = new Point(839, 103);
+        Result.Location = new Point(926, 33);
+        Result.Margin = new Padding(3);
         Result.Name = "Result";
-        Result.Size = new Size(414, 209);
+        Result.Size = new Size(378, 350);
         Result.TabIndex = 5;
         Result.Text = resources.GetString("Result.Text");
+        Result.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // time
+        // 
+        time.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        time.AutoSize = true;
+        time.BackColor = Color.Transparent;
+        time.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        time.ForeColor = SystemColors.MenuHighlight;
+        time.Location = new Point(309, 419);
+        time.Name = "time";
+        time.Size = new Size(148, 17);
+        time.TabIndex = 1;
+        time.Text = "Search Time: (hh:mm:ss)";
+        // 
+        // MatchPictureBox
+        // 
+        MatchPictureBox.Anchor = AnchorStyles.None;
+        MatchPictureBox.BackColor = Color.Transparent;
+        MatchPictureBox.BorderStyle = BorderStyle.FixedSingle;
+        MatchPictureBox.InitialImage = (Image)resources.GetObject("MatchPictureBox.InitialImage");
+        MatchPictureBox.Location = new Point(464, 33);
+        MatchPictureBox.MaximumSize = new Size(300, 350);
+        MatchPictureBox.Name = "MatchPictureBox";
+        MatchPictureBox.Size = new Size(300, 350);
+        MatchPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+        MatchPictureBox.TabIndex = 2;
+        MatchPictureBox.TabStop = false;
         // 
         // statusStrip
         // 
         statusStrip.Items.AddRange(new ToolStripItem[] { Status });
         statusStrip.Location = new Point(0, 449);
         statusStrip.Name = "statusStrip";
-        statusStrip.Size = new Size(1484, 22);
+        statusStrip.Size = new Size(1404, 22);
         statusStrip.TabIndex = 7;
         statusStrip.Text = "statusStrip";
         // 
         // Status
         // 
         Status.ActiveLinkColor = SystemColors.Highlight;
-        Status.BackColor = SystemColors.ActiveBorder;
+        Status.BackColor = SystemColors.Control;
         Status.DisplayStyle = ToolStripItemDisplayStyle.Text;
-        Status.ForeColor = SystemColors.Highlight;
+        Status.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Status.ForeColor = Color.Brown;
         Status.Name = "Status";
-        Status.Size = new Size(69, 17);
+        Status.Size = new Size(77, 17);
         Status.Text = "NOT READY";
         // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
         AutoScaleMode = AutoScaleMode.Dpi;
-        ClientSize = new Size(1484, 471);
+        AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        ClientSize = new Size(1404, 471);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
         Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
+        PaddingChanged += forceSizeLocationRecalc;
+        DpiChangedBeforeParent += forceSizeLocationRecalc;
+        DpiChangedAfterParent += forceSizeLocationRecalc;
+        Resize += forceSizeLocationRecalc;
         TLP.ResumeLayout(false);
         TLP.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
+        ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
         statusStrip.ResumeLayout(false);
         statusStrip.PerformLayout();
         ResumeLayout(false);
@@ -259,6 +278,7 @@ partial class MainForm
                 MessageBox.Show("Error loading default image");
             }
         }
+        forceSizeLocationRecalc(null, null);
     }
 
     // Prompt to select image
@@ -272,7 +292,7 @@ partial class MainForm
         {
             string selectedImagePath = openFileDialog.FileName;
             send.path = selectedImagePath;
-            time.Text = selectedImagePath;
+            time.Text = new StringBuilder("Path: ").Append(selectedImagePath).ToString();
             LoadImage(userPictureBox, selectedImagePath);
             Status.Text = "READY";
         }
@@ -299,6 +319,12 @@ partial class MainForm
             MessageBox.Show("Missing Algorithm");
             return;
         }
+        if(send.path == null)
+        {
+            MessageBox.Show("Please select an image!");
+            return;
+        }
+
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
         try
@@ -333,6 +359,14 @@ partial class MainForm
                                         $"Pekerjaan         :   {query.pekerjaan}\n").Append(
                                         $"Kewarganegaraan   :   {query.kewarganegaraan}\n")
                                         .ToString();
+        forceSizeLocationRecalc(null, null);
+    }
+
+    private void forceSizeLocationRecalc(object sender, EventArgs e)
+    {
+        Width = TLP.Width + 100;
+        Height = TLP.Height + statusStrip.Height + 40;
+        TLP.Location = new Point(10,0);
     }
 
     #endregion
