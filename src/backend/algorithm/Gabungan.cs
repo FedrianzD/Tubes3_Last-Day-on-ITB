@@ -11,7 +11,7 @@ namespace Gabungan
         static void Main()
         {
             // Database_Operation.DB.EncryptDatabaseBiodata();
-            Database_Operation.DB.ReadDatabaseBiodataAll();
+            // Database_Operation.DB.ReadDatabaseBiodataAll();
             // Database_Operation.DB.EncryptDatabaseSidikJari();
             // Database_Operation.DB.ReadDatabaseSidikJari();
             // Connect();
@@ -27,22 +27,26 @@ namespace Gabungan
             // reader.Reader.ReadFileName();
             // Database_Operation.DB.InsertDatabase();
             
-            // Console.WriteLine(encryption.Encryption.Encrypt("La1n4 Bond5", "LastDayonITB", 5));
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            (string path, string Name, string CorruptName, float percent) res = getPathAndName("D:/Github/Tubes3_Last-Day-on-ITB/test/SOCOFing/Altered/Altered-Hard/1__M_Right_little_finger_CR.BMP", 0);
-            Console.WriteLine("Path " + res.path);
-            Console.WriteLine("Nama asli: " + res.Name + " Hasil decrypt " + encryption.Encryption.Decrypt(res.Name, "LastDayonITB", 5));
-            Console.WriteLine("Nama Corrupt " + res.CorruptName + " Hasil decrypt " + encryption.Encryption.Decrypt(res.CorruptName, "LastDayonITB", 5));
-            Console.WriteLine(res.percent);
-            Database_Operation.DB.SearchDatabaseWithName(res.CorruptName);
-            stopwatch.Stop();
-            TimeSpan ts = stopwatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
+            Console.WriteLine(encryption.Encryption.Encrypt("Terrorist", "LastDayonITB", 5));
+            Console.WriteLine(encryption.Encryption.Encrypt("Wikipedia Scraper", "LastDayonITB", 5));
+            Console.WriteLine(encryption.Encryption.Encrypt("Pecinta Bot Diamond", "LastDayonITB", 5));
+            Console.WriteLine(encryption.Encryption.Encrypt("SpeedRunner Wordle", "LastDayonITB", 5));
+            Console.WriteLine(encryption.Encryption.Decrypt("Iu|}lWxgfrp%] w{jm","LastDayonITB", 5 ));
+            // Stopwatch stopwatch = new Stopwatch();
+            // stopwatch.Start();
+            // (string path, string Name, string CorruptName, float percent) res = getPathAndName("D:/Github/Tubes3_Last-Day-on-ITB/test/SOCOFing/Altered/Altered-Hard/1__M_Right_little_finger_CR.BMP", 0);
+            // Console.WriteLine("Path " + res.path);
+            // Console.WriteLine("Nama asli: " + res.Name + " Hasil decrypt " + encryption.Encryption.Decrypt(res.Name, "LastDayonITB", 5));
+            // Console.WriteLine("Nama Corrupt " + res.CorruptName + " Hasil decrypt " + encryption.Encryption.Decrypt(res.CorruptName, "LastDayonITB", 5));
+            // Console.WriteLine(res.percent);
+            // Database_Operation.DB.SearchDatabaseWithName(res.CorruptName);
+            // stopwatch.Stop();
+            // TimeSpan ts = stopwatch.Elapsed;
+            // string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            // ts.Hours, ts.Minutes, ts.Seconds,
+            // ts.Milliseconds / 10);
 
-            Console.WriteLine("RunTime " + elapsedTime);
+            // Console.WriteLine("RunTime " + elapsedTime);
             // Console.ReadKey();
             // string path = "SOCOFing/Real/1__M_Left_index_finger.BMP";
             // List<string> arr = converter.Converter.readFile(path);
