@@ -57,7 +57,7 @@ TBA
 - [This Repository](https://github.com/CrystalNoob/Tubes3_Last-day-on-ITB)
 - [The Report](https://docs.google.com/document/d/10H--678aPKPdMAKm2CON_9tGlog8Y7BdmlD5TyK3IJs/edit)
 
-
+Uninstall Mariadb dulu anjing
 docker-compose down -v
 docker-compose up -d
 iconv -f utf-16 -t utf-8 stima3.sql > stima.sql
