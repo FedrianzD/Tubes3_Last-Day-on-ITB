@@ -80,7 +80,7 @@ partial class MainForm
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
         TLP.RowStyles.Add(new RowStyle());
-        TLP.Size = new Size(1565, 449);
+        TLP.Size = new Size(1565, 500);
         TLP.TabIndex = 0;
         TLP.Paint += TLP_Paint;
         // 
@@ -150,7 +150,7 @@ partial class MainForm
         similarity.ForeColor = Color.DarkOrange;
         similarity.Location = new Point(926, 419);
         similarity.Name = "similarity";
-        similarity.Size = new Size(67, 30);
+        similarity.Size = new Size(67, 81);
         similarity.TabIndex = 4;
         similarity.Text = "Similarity: ";
         // 
@@ -205,16 +205,16 @@ partial class MainForm
         time.ForeColor = SystemColors.MenuHighlight;
         time.Location = new Point(309, 419);
         time.Name = "time";
-        time.Size = new Size(148, 30);
+        time.Size = new Size(148, 81);
         time.TabIndex = 1;
         time.Text = "Search Time: (hh:mm:ss)";
         // 
         // statusStrip
         // 
         statusStrip.Items.AddRange(new ToolStripItem[] { Status });
-        statusStrip.Location = new Point(0, 493);
+        statusStrip.Location = new Point(0, 539);
         statusStrip.Name = "statusStrip";
-        statusStrip.Size = new Size(1602, 22);
+        statusStrip.Size = new Size(1604, 22);
         statusStrip.TabIndex = 7;
         statusStrip.Text = "statusStrip";
         // 
@@ -233,7 +233,7 @@ partial class MainForm
         // 
         AutoScaleMode = AutoScaleMode.Inherit;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        ClientSize = new Size(1602, 515);
+        ClientSize = new Size(1604, 561);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
