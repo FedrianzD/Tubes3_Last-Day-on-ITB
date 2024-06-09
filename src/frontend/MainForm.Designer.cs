@@ -47,7 +47,6 @@ partial class MainForm
         Result = new Label();
         statusStrip = new StatusStrip();
         Status = new ToolStripStatusLabel();
-        statusStrip = new StatusStrip();
         TLP.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
@@ -57,7 +56,7 @@ partial class MainForm
         // TLP
         // 
         TLP.Anchor = AnchorStyles.None;
-        TLP.AutoSize = true;
+        TLP.AutoScroll = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
         TLP.ColumnStyles.Add(new ColumnStyle());
@@ -215,9 +214,8 @@ partial class MainForm
         // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
-        AutoScroll = true;
+        AutoScaleDimensions = new SizeF(96F, 96F);
+        AutoScaleMode = AutoScaleMode.Dpi;
         ClientSize = new Size(1484, 471);
         Controls.Add(statusStrip);
         Controls.Add(TLP);
