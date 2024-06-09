@@ -5,51 +5,16 @@ using System.Text ;
 namespace stringMatching
 {
     public class LCS {
-        // start 
-        public static int LongestCommonDistance(string pattern, string subset) {
-            StringBuilder pat = new StringBuilder(pattern) ;
-            StringBuilder sub = new StringBuilder(subset) ;
-            int maxDiff = 0 ;
-            int diff = 0 ;
-            int index = 0 ;
 
-            for (int i = 0 ; i < sub.Length ; i++) {
-                diff = 0 ;
-                index = 0 ;
-                while(true) {
-                    if (index >= sub.Length - i - 1) {
-                        if (diff > maxDiff) {
-                            maxDiff = diff ;
-                        }
-                        break ;
-                    }
-                    if (pat[index] == sub[index + i]) {
-                        diff += 1 ;
-                    }
-                    else {
-                        if (diff > maxDiff) {
-                            maxDiff = diff ;
-                            break ;
-                        }
-                    }
-                    index++ ;
-                }
-            }
-            maxDiff /= pat.Length ;
-            maxDiff *= 100 ;
-            return maxDiff ;
-        }
-
-        public static string LongestCommonSubsequence(string pattern, string subset)
+        public static int LongestCommonSubsequence(string pattern, string subset)
             {
                 int m = pattern.Length;
                 int n = subset.Length;
 
-                // Create a 2D array to store the lengths of LCS.
-                // lcsTable[i][j] will contain the length of LCS of pattern[0..i-1] and subset[0..j-1]
+                // buat tabel lcs
                 int[,] lcsTable = new int[m + 1, n + 1];
 
-                // Build the lcsTable from the bottom up
+                // inisialisasi tabel
                 for (int i = 0; i <= m; i++)
                 {
                     for (int j = 0; j <= n; j++)
@@ -69,19 +34,13 @@ namespace stringMatching
                     }
                 }
 
-                // lcsTable[m, n] contains the length of LCS for pattern[0..m-1] and subset[0..n-1]
-                int lcsLength = lcsTable[m, n];
+                int length = lcsTable[m, n];
+                char[] lcs = new char[length];
+                int index = length - 1;
 
-                // Create a char array to store the LCS characters
-                char[] lcs = new char[lcsLength];
-                int index = lcsLength - 1;
-
-                // Start from the right-most-bottom-most corner and
-                // one by one store characters in lcs
                 int ii = m, jj = n;
                 while (ii > 0 && jj > 0)
                 {
-                    // If current character in pattern and subset are same, then it is part of LCS
                     if (pattern[ii - 1] == subset[jj - 1])
                     {
                         lcs[index] = pattern[ii - 1];
@@ -89,8 +48,7 @@ namespace stringMatching
                         jj--;
                         index--;
                     }
-                    // If not same, then find the larger of two and
-                    // go in the direction of larger value
+
                     else if (lcsTable[ii - 1, jj] > lcsTable[ii, jj - 1])
                     {
                         ii--;
@@ -101,14 +59,16 @@ namespace stringMatching
                     }
                 }
 
-                // Convert char array to string
-                return new string(lcs);
+                int persentase = new string(lcs).Length ;
+                // Console.WriteLine(persentase) ;
+                persentase = persentase * 100 / pattern.Length ;
+                return persentase;
             }
-        public static void Main() {
-            string subset = "heloooooooooohlllooooooooooooooo" ;
-            string pattern = "brooomacuyhelbromaoooo" ;
-            Console.WriteLine(LongestCommonSubsequence(pattern, subset)) ;
-        }
+        // public static void Main() {
+        //     string subset = "heloooooooooohlllooooooooooooooo" ;
+        //     string pattern = "brooomacuyhelbromaoooo" ;
+        //     Console.WriteLine(LongestCommonSubsequence(pattern, subset)) ;
+        // }
     }
     public class Levenshtein
     {

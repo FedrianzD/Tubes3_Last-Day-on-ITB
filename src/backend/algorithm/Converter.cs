@@ -81,9 +81,9 @@ namespace converter
         public static string getPattern(List<string> arr)
         {
 
-            int midpoint = arr.Count / 2;
+            int midpoint = arr.Count * 2 / 3;
             string Original = arr.ElementAt(midpoint);
-            StringBuilder sb = new StringBuilder();
+            // StringBuilder sb = new StringBuilder();
             int midpoint2 = (Original.Length - 30) / 2;
 
             return Original.Substring(midpoint2, 30);

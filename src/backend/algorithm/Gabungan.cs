@@ -91,7 +91,7 @@ namespace Gabungan
                         name = pair.Value;
                         break; // kalo ketemu yang sama persis break aja
                     }
-                    diff = stringMatching.Levenshtein.LevenshteinDistance(pattern, Original);
+                    diff = stringMatching.LCS.LongestCommonSubsequence(pattern, Original);
                     if (diff > diffMax)
                     {
                         diffMax = diff; // nyari diff paling kecil di satu gambar
