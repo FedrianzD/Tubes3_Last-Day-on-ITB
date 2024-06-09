@@ -112,30 +112,30 @@ public class Encryption
         string decryptedC = EncryptC(ciphertext, -keyC) ;
         return DecryptV(decryptedC, keyV) ;
     }
-    static void Main()
-    {
-        string key1 = "Last Day on ITB" ;
-        int key2 = 1 ;
-        string tes = "Dale Daldan" ;
-        string encrypted = Encrypt(tes, key1, key2) ;
-        string decrypted = Decrypt(encrypted, key1, key2) ;
-        Console.WriteLine(encrypted) ;
-        Console.WriteLine(decrypted) ;
+    //static void main()
+    //{
+    //    string key1 = "last day on itb";
+    //    int key2 = 1;
+    //    string tes = "dale daldan";
+    //    string encrypted = encrypt(tes, key1, key2);
+    //    string decrypted = decrypt(encrypted, key1, key2);
+    //    console.writeline(encrypted);
+    //    console.writeline(decrypted);
 
-        // string encryptedV = EncryptV(tes, key1) ;
-        // Console.WriteLine(encryptedV) ;
-        // string encryptedC = EncryptC(encryptedV, key2) ;
-        // Console.WriteLine(encryptedC) ;
+    //    // string encryptedv = encryptv(tes, key1) ;
+    //    // console.writeline(encryptedv) ;
+    //    // string encryptedc = encryptc(encryptedv, key2) ;
+    //    // console.writeline(encryptedc) ;
 
-        // string decryptedC = EncryptC(encryptedC, -key2) ;
-        // Console.WriteLine(decryptedC) ;
-        // string decryptedV = DecryptV(decryptedC, key1) ;
-        // Console.WriteLine(decryptedV) ;
+    //    // string decryptedc = encryptc(encryptedc, -key2) ;
+    //    // console.writeline(decryptedc) ;
+    //    // string decryptedv = decryptv(decryptedc, key1) ;
+    //    // console.writeline(decryptedv) ;
 
-        // string enc = EncryptC(tes, key2) ;
-        // Console.WriteLine(enc) ;
-        // string dec = EncryptC(enc, -key2) ;
-        // Console.WriteLine(dec) ;
+    //    // string enc = encryptc(tes, key2) ;
+    //    // console.writeline(enc) ;
+    //    // string dec = encryptc(enc, -key2) ;
+    //    // console.writeline(dec) ;
+    //}
     }
-}
 }

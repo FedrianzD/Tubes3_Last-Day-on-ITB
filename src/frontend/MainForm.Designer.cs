@@ -45,12 +45,12 @@ partial class MainForm
         similarity = new Label();
         userPictureBox = new PictureBox();
         Result = new Label();
-        statusStrip1 = new StatusStrip();
         Status = new ToolStripStatusLabel();
+        statusStrip = new StatusStrip();
         TLP.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).BeginInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).BeginInit();
-        statusStrip1.SuspendLayout();
+        statusStrip.SuspendLayout();
         SuspendLayout();
         // 
         // TLP
@@ -138,7 +138,7 @@ partial class MainForm
         algorithmComboBox.AutoCompleteCustomSource.AddRange(new string[] { "BM", "KMP" });
         algorithmComboBox.FormattingEnabled = true;
         algorithmComboBox.ImeMode = ImeMode.Off;
-        algorithmComboBox.Items.AddRange(new string[] { "BM", "KMP" });
+        algorithmComboBox.Items.AddRange(new object[] { "BM", "KMP" });
         algorithmComboBox.Location = new Point(309, 389);
         algorithmComboBox.MaxDropDownItems = 2;
         algorithmComboBox.Name = "algorithmComboBox";
@@ -194,15 +194,6 @@ partial class MainForm
         Result.TabIndex = 5;
         Result.Text = "List Biodata";
         // 
-        // statusStrip1
-        // 
-        statusStrip1.Items.AddRange(new ToolStripItem[] { Status });
-        statusStrip1.Location = new Point(0, 490);
-        statusStrip1.Name = "statusStrip1";
-        statusStrip1.Size = new Size(1064, 22);
-        statusStrip1.TabIndex = 7;
-        statusStrip1.Text = "statusStrip1";
-        // 
         // Status
         // 
         Status.ActiveLinkColor = SystemColors.Highlight;
@@ -213,12 +204,21 @@ partial class MainForm
         Status.Size = new Size(69, 17);
         Status.Text = "NOT READY";
         // 
+        // statusStrip
+        // 
+        statusStrip.Items.AddRange(new ToolStripItem[] { Status });
+        statusStrip.Location = new Point(0, 490);
+        statusStrip.Name = "statusStrip";
+        statusStrip.Size = new Size(1064, 22);
+        statusStrip.TabIndex = 7;
+        statusStrip.Text = "statusStrip";
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1064, 512);
-        Controls.Add(statusStrip1);
+        Controls.Add(statusStrip);
         Controls.Add(TLP);
         Name = "MainForm";
         Text = "Aplikasi C# Tugas Besar 3 Strategi Algoritma 2023/2024";
@@ -226,8 +226,8 @@ partial class MainForm
         TLP.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)MatchPictureBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)userPictureBox).EndInit();
-        statusStrip1.ResumeLayout(false);
-        statusStrip1.PerformLayout();
+        statusStrip.ResumeLayout(false);
+        statusStrip.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -298,6 +298,7 @@ partial class MainForm
         if(!(send.algo == 0 || send.algo == 1))
         {
             MessageBox.Show("Missing Algorithm");
+            return;
         }
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
@@ -348,6 +349,6 @@ partial class MainForm
     private Label similarity;
     private (string path, int algo) send = (null, -1);
     private Label Result;
-    private StatusStrip statusStrip1;
     private ToolStripStatusLabel Status;
+    private StatusStrip statusStrip;
 }
