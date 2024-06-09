@@ -46,7 +46,7 @@ Pada project ini, kami akan menggunakan algoritma Boyer-Moore dan Knuth-Morris-P
 4. Jalankan `docker-compose down -v` untuk menghapus volume pada docker. 
 
 ## Usage
-
+Aktifkan docker dan eksekusi `docker compose up` pada root directory repository ini, kemudian:<br>
 Jika ingin menjalankan dari *prebuild binaries*:
 1. Buka folder bin
 2. Navigate ke folder `frontend` -> `net8.0-windows`
@@ -56,7 +56,7 @@ Jika ingin menjalankan dari *prebuild binaries*:
 6. Klik tombol search dan tunggu hasil
 
 Jika ingin menjalankan dari *source*:
-1. Setelah docker aktif, jalankan `dotnet run --project src/frontend` untuk menjalankan aplikasi dengan GUI.
+1. Jalankan `dotnet run --project src/frontend` untuk menjalankan aplikasi dengan GUI.
 2. Upload citra sidik jari yang ingin digunakan.
 3. Pilih algoritma yang ingin digunakan.
 4. Klik tombol search dan tunggu hasil.
