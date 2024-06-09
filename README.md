@@ -68,3 +68,4 @@ Jika ingin menjalankan dari *source*:
 - [Tugas Besar 3 IF2211 Strategi Algoritma Semester II tahun 2023/2024](https://docs.google.com/document/d/15Dk7FbcraVDCYDYtT6d743h649ZMN6xE/edit)
 - [This Repository](https://github.com/CrystalNoob/Tubes3_Last-day-on-ITB)
 - [The Report](https://docs.google.com/document/d/1SFLd8xM8HPhVgEdfM-HLrRCQ8aOkbLk9Jr1tx8dcsxs/edit)
+- [The Video](https://youtu.be/vmCpb-Dik7k)
