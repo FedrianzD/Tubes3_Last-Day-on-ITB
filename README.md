@@ -47,6 +47,15 @@ Pada project ini, kami akan menggunakan algoritma Boyer-Moore dan Knuth-Morris-P
 
 ## Usage
 
+Jika ingin menjalankan dari *prebuild binaries*:
+1. Buka folder bin
+2. Navigate ke folder `frontend` -> `net8.0-windows`
+3. Lalu buka `frontend.exe` untuk menjalankan aplikasi GUI
+4. Upload citra sidik jari yang ingin dicari biodatanya
+5. Pilih algoritma yang ingin digunakan
+6. Klik tombol search dan tunggu hasil
+
+Jika ingin menjalankan dari *source*:
 1. Setelah docker aktif, jalankan `dotnet run --project src/frontend` untuk menjalankan aplikasi dengan GUI.
 2. Upload citra sidik jari yang ingin digunakan.
 3. Pilih algoritma yang ingin digunakan.
