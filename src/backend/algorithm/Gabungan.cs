@@ -11,7 +11,7 @@ namespace Gabungan
         static void Main()
         {
             // Database_Operation.DB.EncryptDatabaseBiodata();
-            // Database_Operation.DB.ReadDatabaseBiodataAll();
+            Database_Operation.DB.ReadDatabaseBiodataAll();
             // Database_Operation.DB.EncryptDatabaseSidikJari();
             // Database_Operation.DB.ReadDatabaseSidikJari();
             // Connect();
@@ -26,9 +26,11 @@ namespace Gabungan
             // }
             // reader.Reader.ReadFileName();
             // Database_Operation.DB.InsertDatabase();
+            
+            // Console.WriteLine(encryption.Encryption.Encrypt("La1n4 Bond5", "LastDayonITB", 5));
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            (string path, string Name, string CorruptName, float percent) res = getPathAndName("test/SOCOFing/Real/263__F_Left_index_finger.BMP", 0);
+            (string path, string Name, string CorruptName, float percent) res = getPathAndName("D:/Github/Tubes3_Last-Day-on-ITB/test/SOCOFing/Altered/Altered-Hard/1__M_Right_little_finger_CR.BMP", 0);
             Console.WriteLine("Path " + res.path);
             Console.WriteLine("Nama asli: " + res.Name + " Hasil decrypt " + encryption.Encryption.Decrypt(res.Name, "LastDayonITB", 5));
             Console.WriteLine("Nama Corrupt " + res.CorruptName + " Hasil decrypt " + encryption.Encryption.Decrypt(res.CorruptName, "LastDayonITB", 5));
