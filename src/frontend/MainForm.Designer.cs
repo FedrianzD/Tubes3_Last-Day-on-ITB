@@ -341,21 +341,29 @@ partial class MainForm
 
     private void showResult((string path, string Name, string CorruptName, float percent) result)
     {
-        LoadImage(MatchPictureBox, result.path);
         similarity.Text = new StringBuilder("Similarity: ").Append(result.percent + "%").ToString();
-        (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.CorruptName);
-        Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
-                                        $"Nama              :   {encryption.Encryption.Decrypt(result.Name, "LastDayonITB", 5)}\n").Append(
-                                        $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
-                                        $"Tanggal Lahir     :   {query.tanggal_lahir}\n").Append(
-                                        $"Jenis Kelamin     :   {query.jenis_kelamin}\n").Append(
-                                        $"Golongan Darah    :   {query.golongan_darah}\n").Append(
-                                        $"Alamat            :   {query.alamat}\n").Append(
-                                        $"Agama             :   {query.agama}\n").Append(
-                                        $"Status Perkawinan :   {query.status_perkawinan}\n").Append(
-                                        $"Pekerjaan         :   {query.pekerjaan}\n").Append(
-                                        $"Kewarganegaraan   :   {query.kewarganegaraan}\n")
-                                        .ToString();
+        if (result.percent >= 80)
+        {
+            LoadImage(MatchPictureBox, result.path);
+            (string NIK, string nama, string tempat_lahir, string tanggal_lahir, string jenis_kelamin, string golongan_darah, string alamat, string agama, string status_perkawinan, string pekerjaan, string kewarganegaraan) query = Database_Operation.DB.SearchDatabaseWithName(result.CorruptName);
+            Result.Text = new StringBuilder($"NIK               :   {query.NIK}\n").Append(
+                                            $"Nama              :   {encryption.Encryption.Decrypt(result.Name, "LastDayonITB", 5)}\n").Append(
+                                            $"Tempat Lahir      :   {query.tempat_lahir}\n").Append(
+                                            $"Tanggal Lahir     :   {query.tanggal_lahir}\n").Append(
+                                            $"Jenis Kelamin     :   {query.jenis_kelamin}\n").Append(
+                                            $"Golongan Darah    :   {query.golongan_darah}\n").Append(
+                                            $"Alamat            :   {query.alamat}\n").Append(
+                                            $"Agama             :   {query.agama}\n").Append(
+                                            $"Status Perkawinan :   {query.status_perkawinan}\n").Append(
+                                            $"Pekerjaan         :   {query.pekerjaan}\n").Append(
+                                            $"Kewarganegaraan   :   {query.kewarganegaraan}\n")
+                                            .ToString();
+        }
+        else
+        {
+            LoadImage(MatchPictureBox, null);
+            MessageBox.Show("No Match Found!");
+        }
     }
 
     #endregion
