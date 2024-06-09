@@ -55,7 +55,7 @@ partial class MainForm
         // 
         // TLP
         // 
-        TLP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        TLP.Anchor = AnchorStyles.None;
         TLP.AutoSize = true;
         TLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         TLP.ColumnCount = 3;
@@ -72,7 +72,6 @@ partial class MainForm
         TLP.Controls.Add(time, 1, 4);
         TLP.Controls.Add(MatchPictureBox, 1, 1);
         TLP.Location = new Point(10, 0);
-        TLP.Margin = new Padding(5);
         TLP.Name = "TLP";
         TLP.RowCount = 4;
         TLP.RowStyles.Add(new RowStyle());
@@ -365,8 +364,7 @@ partial class MainForm
     private void forceSizeLocationRecalc(object sender, EventArgs e)
     {
         Width = TLP.Width + 100;
-        Height = TLP.Height + statusStrip.Height + 40;
-        TLP.Location = new Point(10,0);
+        Height = TLP.Height + statusStrip.Height + 50;
     }
 
     #endregion
