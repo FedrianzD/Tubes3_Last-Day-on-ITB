@@ -269,7 +269,7 @@ partial class MainForm
         {
             try
             {
-                target.Image = Image.FromFile(@"C:\Users\Acer\tmp\Tubes3_Last-Day-on-ITB\src\frontend\assets\placeholder.png");
+                target.Image = Image.FromFile(@"src/frontend/assets/placeholder.png");
             }
             catch (Exception)
             {
